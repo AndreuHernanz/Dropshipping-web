@@ -36,17 +36,6 @@ class CategoriesController {
 		}
 	}
 
-	async updateCategory (req,res){
-		const {old_category, new_category} = req.body
-		try{
-			const updatedCategory = await CategoriesDB.updateOne({category:old_category},{category:new_category})
-			res.send({ ok:true, data:updatedCategory })
-		}
-		catch( error ){
-			res.send({ ok:false, data:updatedCategory })
-		}
-	}
-
 	async getCategory (req,res){
 		///category/:category
 		let category = req.params.category

@@ -72,26 +72,6 @@ class ProductsController {
 		}
 	}
 
-	async updateProduct (req,res){
-		const {old_product, new_product} = req.body
-		try{
-			const updated_product = await ProductsDB.updateOne(
-				{name:old_product.name},
-				{
-					name:new_product.name, 
-					price:new_product.price, 
-					color:new_product.color, 
-					description:new_product.description, 
-					category:new_product.category
-				}
-			)
-			res.send({ok:true,data:updated_product})
-		}
-		catch( error ){
-			res.send({ok:false,message:error})
-		}
-	}
-
 	async getProduct (req,res){
 		let name = req.params.product
 		try{
