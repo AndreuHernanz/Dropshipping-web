@@ -1,0 +1,93 @@
+CoreFunctionality:
+  Admin:
+    - Register admin
+    - Login admin
+    - Logout admin
+
+  Admin Dashboard:
+    - Add products
+    - Remove products
+    - Update products
+    - Add categories
+    - Remove categories
+    - Update stock
+
+  Products:
+    - Show all products (main page)
+    - Show one product
+    - Filter by category
+
+  Cart: (cart works without user registration)
+    - Add product to cart
+    - Cart page
+    - Remove product from cart
+    - Increase product quantity in cart
+    - Decrease product quantity in cart
+    - Clear cart
+
+  Checkout:
+    - Go to checkout page
+    - Payment (Stripe)
+    - Send email confirmation
+
+ExtraFunctionalityIdeas:
+  - Register user
+  - Add categories
+  - Remove categories
+
+
+Database structure
+  Categories:
+    - name
+  
+  Products:
+    - name
+    - description
+    - price
+    - stock
+    - image (st4ring)
+    - category_id
+    - size (optional)
+    - color (optional)
+
+  Users:
+    - email
+    - name
+    - password
+    - cart (array of products)
+
+
+Shop Theme
+  Milf Shakes Products * (?)
+
+  
+Web page logic
+  Home: 
+  - You see al products. 
+  - You can filter. 
+  - Acces Specific product.
+  - Acces cart
+  - Log In - Register / Logged in options
+
+
+  Product:
+  - Choose size / Choose color
+  - Add to cart
+  - Back to HOME
+  - Show similar products * (?)
+
+  Cart:
+  - Add or remove quantity
+  - Pay -> idk, maybe end flux here
+  - Clear cart
+  - Back HOME
+
+  DashBoard:
+  - Add product (think a good eay to implement)
+  - Remove product
+
+
+
+
+
+
