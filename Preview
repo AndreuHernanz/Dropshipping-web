@@ -46,9 +46,9 @@ Database structure
     - price
     - stock
     - image (st4ring)
-    - category_id
     - size (optional)
     - color (optional)
+    - category_id
 
   Users:
     - email
