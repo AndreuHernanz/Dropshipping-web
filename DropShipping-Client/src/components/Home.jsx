@@ -29,6 +29,8 @@ function Home() {
         // `/product/${productMap._id}`;
     }*/
 
+        //`/product/${productMap.name}`
+
     return (
         <div className="home">
             <div className="headerShadow"></div>
