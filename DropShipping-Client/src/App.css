@@ -30,6 +30,9 @@
   max-width: 100%;
   background-color: red;
 }
+.headerShadow{
+  height: 40px;
+}
 
 .navbar {
   display: flex;
@@ -41,7 +44,7 @@
 }
 
 .home{
-  padding-top: 40px;
+  /*padding-top: 40px;*/
 }
 
 
