@@ -24,9 +24,8 @@ function Product() {
     return (
         <div>
             <div className="headerShadow"></div>
-            <h1>{product.name}</h1>
-            {/*product.image.map((imageIndx) => ( <img src="" alt="" /> ))*/}
-            <img src={product.image[0]} alt="" />
+            <h1>{productName}</h1>
+            {product.image && product.image.map((imageIndx, index) => ( <img key={index} src={imageIndx} alt="" style={{ width: "200px" }} /> ))}
             <p>{product.description}</p>
             <p>{product.price}€</p>
             <p>{product.stock}</p>
