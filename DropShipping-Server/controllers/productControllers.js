@@ -4,7 +4,7 @@
 	 const ProductsDB = require('../models/products')
 
 class ProductsController {
-	async getAllProducts (req,res){
+	async getAllCatAllProducts (req, res){
 	    try{
 			const all_categories = await CategoriesDB.find({})
 			const all_products = await ProductsDB.find({})
@@ -16,10 +16,6 @@ class ProductsController {
 				const products = all_products.filter(product => product.category === category)
 				all.push({category: category, products: products})
 			}
-
-			
-
-
 			
 	    	res.send({ok:true,message:all})
 	    }catch( error ){
@@ -27,12 +23,24 @@ class ProductsController {
 	    }
 	}
 
-	async addProduct (req,res){
+	async getAllProducts (req, res){
+	    try{
+			const all_products = await ProductsDB.find({})
+	    	res.send({ok:true,message:all_products})
+	    }catch( error ){
+	    	res.send({ok:false,message:error})
+	    }
+	}
+
+	async addProduct (req, res){
 		try{
 			const { product } = req.body
 			const new_product = {
 				name: product.name,
 				price: parseFloat(product.price),
+				image: product.image,
+				stock: parseInt(product.stock),
+				size: product.size,
 				color: product.color,
 				description: product.description,
 				category: product.category
@@ -53,7 +61,7 @@ class ProductsController {
 		}
 	}
 
-	async deleteProduct (req,res){
+	async deleteProduct (req, res){
 		let {product}=req.body
 		try{
 			const product_deleted_name = await ProductsDB.find({name:product.name})

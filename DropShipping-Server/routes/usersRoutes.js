@@ -18,6 +18,7 @@ const router = require('express').Router()
 | POST   | /product/add          | Add new product to DB                       |
 | POST   | /product/delete       | Delete product from DB                      |
 | GET    | /product/             | display all categories with all products    |
+| GET    | /product/all          | display all products                        |
 | GET    | /product/:product     | Get one product by passing name in the body |
  
 | POST   | /user/add             | Add a new user to DB                        |
