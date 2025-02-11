@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+
 function Home() {
     const [products, setProducts] = useState([])
     const [product, setProduct] = useState({})
@@ -18,16 +19,20 @@ function Home() {
             })
     }, [])
 
-    
+    /*
+    setProduct = (productMap) => {
+        //go to product page
+        // `/product/${productMap._id}`;
+    }*/
 
     return (
         <div className="home">
             <div className="products">
-                {products.map((product) => (
-                    <div className="product" key={product._id}> {/*onClick={() => setProduct(product)}>*/}
-                        <img src={product.image[0]} alt="" />
-                        <h2>{product.name.toUpperCase()}</h2>
-                        <p>{product.price}€</p>
+                {products.map((productMap) => (
+                    <div className="product" key={productMap._id} onClick={() => setProduct(productMap)}>
+                        <img src={productMap.image[0]} alt="" />
+                        <h2>{productMap.name.toUpperCase()}</h2>
+                        <p>{productMap.price}€</p>
                     </div>
                 ))}
             </div>
