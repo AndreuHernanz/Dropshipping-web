@@ -91,3 +91,199 @@ Web page logic
 
 
 
+
+{
+    "ok": true,
+    "message": [
+        {
+            "category": "sweaters",
+            "products": []
+        },
+        {
+            "category": "hats",
+            "products": [
+                {
+                    "_id": "67ab2f4b38645090ed42d05a",
+                    "name": "snow b black",
+                    "price": 24,
+                    "image": [
+                        "https://res.cloudinary.com/dzv4vfxhw/image/upload/v1739263235/Snow_1_front_ljvxfw.webp",
+                        "https://res.cloudinary.com/dzv4vfxhw/image/upload/v1739263234/Snow_1_back_ypwumi.webp"
+                    ],
+                    "stock": 5,
+                    "size": [
+                        ""
+                    ],
+                    "color": [
+                        ""
+                    ],
+                    "description": "Goes hard, what else do you need. You can find more images in our social media",
+                    "category": "hats",
+                    "__v": 0
+                },
+                {
+                    "_id": "67ab36af38645090ed42d067",
+                    "name": "snow b grey",
+                    "price": 24,
+                    "image": [
+                        "https://res.cloudinary.com/dzv4vfxhw/image/upload/v1739273433/Snow_2_front_v74nhk.webp",
+                        "https://res.cloudinary.com/dzv4vfxhw/image/upload/v1739273433/Snow_2_back_rmjag3.webp"
+                    ],
+                    "stock": 7,
+                    "size": [
+                        ""
+                    ],
+                    "color": [
+                        ""
+                    ],
+                    "description": "Goes hard, what else do you need. You can find more images in our social media",
+                    "category": "hats",
+                    "__v": 0
+                }
+            ]
+        },
+        {
+            "category": "t-shirts",
+            "products": [
+                {
+                    "_id": "67ab5390504366101b394b94",
+                    "name": "electric m shake",
+                    "price": 44.49,
+                    "image": [
+                        "https://res.cloudinary.com/dzv4vfxhw/image/upload/v1739273431/Electric_tee_back_ofxxgf.webp",
+                        "https://res.cloudinary.com/dzv4vfxhw/image/upload/v1739273432/Electric_tee_front_z7ozmw.webp"
+                    ],
+                    "stock": 4,
+                    "size": [
+                        "s",
+                        "m",
+                        "l",
+                        "xl",
+                        "xxl"
+                    ],
+                    "color": [
+                        ""
+                    ],
+                    "description": "He got so electrified that he brightens in the dark. Turn down the lights and feel the energy with fluorescent paint",
+                    "category": "t-shirts",
+                    "__v": 0
+                },
+                {
+                    "_id": "67ab584f8420ab6d9b47e97d",
+                    "name": "build mr m shake",
+                    "price": 39.29,
+                    "image": [
+                        "https://res.cloudinary.com/dzv4vfxhw/image/upload/v1739273432/classic_back_zsge9n.webp",
+                        "https://res.cloudinary.com/dzv4vfxhw/image/upload/v1739273431/classic_front_qssluo.webp"
+                    ],
+                    "stock": 3,
+                    "size": [
+                        "s",
+                        "m",
+                        "l",
+                        "xl",
+                        "xxl"
+                    ],
+                    "color": [
+                        ""
+                    ],
+                    "description": "Where the f*** are the instructions?",
+                    "category": "t-shirts",
+                    "__v": 0
+                },
+                {
+                    "_id": "67ab5bbb8420ab6d9b47e983",
+                    "name": "water",
+                    "price": 39.29,
+                    "image": [
+                        "https://res.cloudinary.com/dzv4vfxhw/image/upload/v1739282909/Water_orange_z1rzjc.webp",
+                        "https://res.cloudinary.com/dzv4vfxhw/image/upload/v1739282909/Water_yellow_baqyyu.webp",
+                        "https://res.cloudinary.com/dzv4vfxhw/image/upload/v1739282909/Water_blue_kgymfl.webp",
+                        "https://res.cloudinary.com/dzv4vfxhw/image/upload/v1739282909/Water_white_vdobqu.webp"
+                    ],
+                    "stock": 6,
+                    "size": [
+                        "s",
+                        "m",
+                        "l",
+                        "xl",
+                        "xxl"
+                    ],
+                    "color": [
+                        "orange",
+                        "yellow",
+                        "lightskyblue",
+                        "white"
+                    ],
+                    "description": "If you don't like the colors, the pistol will be real.",
+                    "category": "t-shirts",
+                    "__v": 0
+                }
+            ]
+        },
+        {
+            "category": "socks",
+            "products": []
+        },
+        {
+            "category": "others",
+            "products": [
+                {
+                    "_id": "67ab37e038645090ed42d06b",
+                    "name": "mr m shake figure",
+                    "price": 15.55,
+                    "image": [
+                        "https://res.cloudinary.com/dzv4vfxhw/image/upload/v1739273805/MShakes_pb1dhp.webp"
+                    ],
+                    "stock": 10,
+                    "size": [
+                        ""
+                    ],
+                    "color": [
+                        ""
+                    ],
+                    "description": "Mr M Shake chill, perfect for you home decoration",
+                    "category": "others",
+                    "__v": 0
+                },
+                {
+                    "_id": "67ab4cfc38645090ed42d071",
+                    "name": "m shake keychain",
+                    "price": 9.99,
+                    "image": [
+                        "https://res.cloudinary.com/dzv4vfxhw/image/upload/v1739273431/Llavero_a_l3mjbi.webp"
+                    ],
+                    "stock": 20,
+                    "size": [
+                        ""
+                    ],
+                    "color": [
+                        ""
+                    ],
+                    "description": "Mr M Shake keychain with 3 items:\n- 3D figure mr M Shake\n- 2D figure mr M Shake\n- Embroidered strip",
+                    "category": "others",
+                    "__v": 0
+                },
+                {
+                    "_id": "67ab56098420ab6d9b47e977",
+                    "name": "cool scarf",
+                    "price": 29.33,
+                    "image": [
+                        "https://res.cloudinary.com/dzv4vfxhw/image/upload/v1739273431/Bufanda_front_xvcpig.webp",
+                        "https://res.cloudinary.com/dzv4vfxhw/image/upload/v1739273431/Bufanda_back_rujczf.webp"
+                    ],
+                    "stock": 2,
+                    "size": [
+                        ""
+                    ],
+                    "color": [
+                        ""
+                    ],
+                    "description": "Use it however you like! Hang it, keep warm, cover up, wrap yourself, drape it, show it off, bundle up, decorate, fold it, style it, accessorize.",
+                    "category": "others",
+                    "__v": 0
+                }
+            ]
+        }
+    ]
+}

@@ -21,7 +21,6 @@ connectingToDB()
 //==========================================================================
 app.use(require('cors')())
 //==========================================================================
-app.use('/test',require('./routes/routes.js'))
 app.use('/category',require('./routes/categoryRoutes.js'))
 app.use('/product',require('./routes/productsRoutes.js'))
 app.use('/user',require('./routes/usersRoutes.js'))

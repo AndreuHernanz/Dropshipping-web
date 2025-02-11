@@ -17,7 +17,7 @@ class CategoriesController {
 		let {category} = req.body
 		try{
 			const category_added = await CategoriesDB.create({category})
-			res.send({ ok:true, data:category_added })
+			res.send({ ok:true, message:category_added })
 		}
 		catch( error ){
 			res.send({ ok:false, message:error })
@@ -29,10 +29,10 @@ class CategoriesController {
 		try{
 			const deletedCategory = await CategoriesDB.deleteOne({category})
 			deletedCategory.deleted_item = category
-			res.send({ ok:true, data:deletedCategory })
+			res.send({ ok:true, message:deletedCategory })
 		}
 		catch( error ){
-			res.send({ ok:false, data:deletedCategory })
+			res.send({ ok:false, message:deletedCategory })
 		}
 	}
 
@@ -45,7 +45,7 @@ class CategoriesController {
 				return res.send({ ok: false, message: 'Category not found' })
 			}
 			else {
-				res.send({ ok:true, data:category_to_find })
+				res.send({ ok:true, message:category_to_find })
 			}
 		}
 		catch( error ){

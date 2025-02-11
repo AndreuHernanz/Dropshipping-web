@@ -38,20 +38,25 @@ class ProductsController {
 			const new_product = {
 				name: product.name,
 				price: parseFloat(product.price),
-				image: product.image,
+				image: product.image.split(", "), //split the string into an array
 				stock: parseInt(product.stock),
-				size: product.size,
-				color: product.color,
+				size: product.size.split(", "),
+				color: product.color.split("/ "),
 				description: product.description,
 				category: product.category
 			}
 			const existingProduct = await ProductsDB.findOne({name: new_product.name})
 			if (existingProduct) {
-				return res.send({ ok: true, data: `Product ${new_product.name} already exists`})
+				return res.send({ ok: true, message: `Product ${new_product.name} already exists`})
 			}
 			else {
+				const categories = await CategoriesDB.find({category: new_product.category})
+				if (categories.length === 0) {
+					const newCategory = await CategoriesDB.create({category: new_product.category})
+				}
+
 				await ProductsDB.create(new_product)
-				return res.send({ ok: true, data: new_product})
+				return res.send({ ok: true, message: new_product})
 				//return res.send({ ok: true, data: `Product ${newProduct.name} added successfully`})
 			}
 
@@ -71,7 +76,7 @@ class ProductsController {
 			else {
 				const product_deleted = await ProductsDB.deleteOne({name:product.name})
 				product_deleted.deleted_item = product.name
-				return res.send({ ok: true, data: product_deleted })
+				return res.send({ ok: true, message: product_deleted })
 				//return res.send({ ok: true, data: `Product ${product.name} deleted successfully -> ${product_deleted}`})
 			}
 		}
@@ -85,7 +90,7 @@ class ProductsController {
 		try{
 			const product_to_find = await ProductsDB.findOne({name:name})
 			//product_to_find.item = name
-			res.send({ok:true,data:product_to_find})
+			res.send({ok:true,message:product_to_find})
 		}
 		catch( error ){
 			res.send({ok:false,message:error})
