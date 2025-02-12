@@ -1,35 +1,13 @@
 import React from "react";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 
 
 
-function Home() {
-    const [products, setProducts] = useState([])
+function Home({ products }) {
 
     let navigate = useNavigate()
-
-
-    useEffect(() => {
-        axios.get("http://localhost:4040/product/all")
-            .then((res) => {
-                setProducts(res.data.message);
-                //console.log(res.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    }, [])
-
-    /*
-    setProduct = (productMap) => {
-        //go to product page
-        // `/product/${productMap._id}`;
-    }*/
-
-        //`/product/${productMap.name}`
 
     return (
         <div className="home">

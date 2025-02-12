@@ -4,7 +4,10 @@ import { NavLink } from "react-router";
 
 const Navbar = () => 
     <header className="header">
-        <div></div>
+        <div>
+            {/* ../assets/MShakeTurnAround.png */}
+            <img src="../assets/iconTab.png" alt="" /> 
+        </div>
         <div>
             <h1>Mr M Shake's shop</h1>
         </div>
