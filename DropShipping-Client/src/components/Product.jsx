@@ -9,9 +9,8 @@ function Product({ products }) {
 
     const product = products.find((productIndx) => productIndx.name === productName)
 
-    //const [size, setSize] = useState("")
     const [selectedSize, setSelectedSize] = useState(null);
-    //let size = product?.size[0]
+    const [selectedColor, setSelectedColor] = useState(null);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -19,12 +18,6 @@ function Product({ products }) {
     function navigateToProduct(prodName) {
         window.scrollTo(0, 0);
         navigate(`/product/${prodName}`)
-    }
-
-    const changeSize = (size_str) => {
-        //setSize(size)
-        //size = size_str
-        console.log(size_str)
     }
 
     let navigate = useNavigate()
@@ -51,7 +44,16 @@ function Product({ products }) {
                             className={selectedSize === sizeIndx ? "size-active":"size-unactive"}>
                                 {sizeIndx.toUpperCase()} 
                         </span> )
-                     )}</p>
+                    )}</p>
+                    <div className="p-color">
+                        {product?.color[0] !== '' && product?.color.map( 
+                            (colorIndx, index) => 
+                            (<div key={index} 
+                                onClick={() => setSelectedColor(colorIndx)}
+                                className={selectedColor === colorIndx ? "color-div color-active":"color-div"} style={{backgroundColor: colorIndx}}>
+                            </div> )
+                        )}
+                    </div>
                     <p className="p-stock" 
                         style = {{ color: product?.stock > 3 ? "darkgreen" : product?.stock > 0 ? "darkgoldenrod" : "red" }} >
                         {product?.stock > 0 ? `We have ${product?.stock} in stock` : "Out of stock"}
@@ -59,6 +61,9 @@ function Product({ products }) {
                     <button className="p-but-add" style = {{cursor: product?.stock > 0 ? "pointer":"not-allowed"}}>Add to cart</button>
                 </div>
             </div>
+
+            /////////////
+
             <div className="category-related">
                 <h2>Related products</h2>
                 <div className="products">

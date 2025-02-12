@@ -25,7 +25,6 @@ const Navbar = () => {
                             to={"/dashboard"}>
                             Dashboard
                         </NavLink>
-                        
             </nav>
         </div>
     </header>
