@@ -1,22 +1,22 @@
 import React from "react";
 // We need to import the NavLink component from the router
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
+import logo from '../assets/MShakeTurnAround.png'; // with import
 
-const Navbar = () => 
+const Navbar = () => {
+
+    let navigate = useNavigate()
+
+    return (
     <header className="header">
-        <div>
-            {/* ../assets/MShakeTurnAround.png */}
-            <img src="../assets/iconTab.png" alt="" /> 
+        <div id="logo-div">
+            <img src={logo} id="logo" onClick={() => navigate(`/`)} alt="M Shake" /> 
         </div>
         <div>
-            <h1>Mr M Shake's shop</h1>
+            <h1 id="page-name" onClick={() => navigate(`/`)}>Mr M Shake's shop</h1>
         </div>
         <div>
             <nav className="navbar">
-                        <NavLink
-                            to={"/"}>
-                            Home
-                        </NavLink>
                         <NavLink
                             to={"/cart"}>
                             Cart
@@ -29,4 +29,6 @@ const Navbar = () =>
             </nav>
         </div>
     </header>
+    )
+}
 export default Navbar;

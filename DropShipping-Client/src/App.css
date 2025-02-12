@@ -23,26 +23,42 @@
 a {
   text-decoration: none;
   color: inherit;
-}
-a:hover {
-  text-decoration: underline;
-}
-a:visited {
-  color: inherit;
-}
-a:focus {
-  outline: none;
+  &:hover {
+    text-decoration: underline;
+  }
+  &:visited {
+    color: inherit;
+  }
+  &:focus {
+    outline: none;
+  }
 }
 
+/* HEADER */
 .header {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
 
   position: fixed;
+  z-index: 1000;
   min-width: 100%;
   max-width: 100%;
   background-color: red;
+  color: white;
+
+  #logo-div {
+    display: flex;
+    justify-content: left;
+    margin-left: 5px;
+  }
+  #logo {
+    height: 50px;
+    cursor: pointer;
+  }
+  #page-name{
+    cursor: pointer;
+  }
 }
 .headerShadow{
   height: 56px;
@@ -57,11 +73,8 @@ a:focus {
   margin: 0 10px;
 }
 
-.home{
-  /*padding-top: 40px;*/
-}
 
-
+/* HOME */
 .products{
   
   padding: 2rem;
@@ -84,6 +97,88 @@ a:focus {
 
   & .color{
     background-color: yellow;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    transition: all 0.3s;
+    border: 1px solid red;
+    box-shadow: 0 0 30px rgb(185, 185, 185);
+  }
+}
+
+/* PRODUCT VIEW */
+.product-view{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.image-view{
+  display: grid;
+  /*grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));*/
+  grid-template-columns: 30vw 30vw;
+  gap: 1rem;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.011);
+  padding: 1em;
+}
+.image-product-view{
+
+  & img {
+    width: 100%;
+    border-radius: 0.5rem;
+  }
+  border-radius: 0.5rem;
+}
+
+/**//**//**/
+.product-info{
+  padding: 1em;
+}
+.p-name{
+  font-weight:900;
+}
+.p-price{
+  margin-bottom: 2rem;
+}
+.p-desc{
+  text-align: left;
+  white-space: pre-line;
+}
+.p-size{
+  font-weight: bold;
+  font-size: large;
+  padding: 1em;
+  cursor: pointer;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+.size-active{
+  color: red;
+  font-weight: 900;
+}
+.size-unactive{
+  
+}
+.p-stock{
+  margin-top: 1em;
+  text-align: left;
+  font-weight: bold;
+}
+.p-but-add{
+  font-size:x-large;
+  margin-top: 1em;
+  background-color: #650000;
+  border: 2px solid #000000;
+  padding: 0.5rem;
+  cursor: pointer;
+  width: 100%;
+  &:hover {
+    /*background-color: #e0e0e0;*/
   }
 }
 

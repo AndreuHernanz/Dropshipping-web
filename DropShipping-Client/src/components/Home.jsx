@@ -1,11 +1,15 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import {useEffect, useState } from 'react'
 import { useNavigate } from "react-router";
 
 
 
 
 function Home({ products }) {
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
 
     let navigate = useNavigate()
 
@@ -21,6 +25,7 @@ function Home({ products }) {
                     </div>
                 ))}
             </div>
+            <img src="../assets/MShakeTurnAround.png" alt="" />
         </div>
     )
 }
