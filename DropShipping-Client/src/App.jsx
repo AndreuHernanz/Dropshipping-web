@@ -25,7 +25,7 @@ function App() {
         setCart(JSON.parse(localStorage.getItem('Cart')) || []);
     }, [])
 
-    function addToCart(productToAdd) {
+    const addToCart = async (productToAdd) => {
         if (cart.find( (prod) => prod.name === productToAdd.name)) {
             let newCart = cart.map((prod) => {
                 if (prod.name === productToAdd.name) {
@@ -40,8 +40,13 @@ function App() {
             setCart([...cart, productToAdd]);
             console.log(cart);
         }
-        localStorage.setItem('Cart', JSON.stringify(cart));
+        //localStorage.setItem('Cart', JSON.stringify(cart));
     }
+
+    useEffect(() => {
+        localStorage.setItem('Cart', JSON.stringify(cart));
+        console.log(cart);
+    }, [cart])
 
     return (
         <Router>

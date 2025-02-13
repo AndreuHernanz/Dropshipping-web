@@ -1,6 +1,17 @@
 import React from "react";
+import { useState, useEffect } from 'react'
 
 function Cart({cart}) {
+    const [totalPrice, setTotalPrice] = useState(0);
+
+    useEffect(() => {
+        let total = 0;
+        cart.forEach((product) => {
+            total += product.price * product.units;
+        });
+        setTotalPrice(total);
+    }, [cart]);
+
     return (
         <>
         <div className="headerShadow"></div>
@@ -18,6 +29,7 @@ function Cart({cart}) {
                         <p>Units: {product.units}</p>
                     </div>
                 ))}
+                <h1 className="cart-product">Total: {totalPrice}</h1>
             </div>
         </div>
         </>
