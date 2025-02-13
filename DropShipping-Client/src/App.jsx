@@ -25,6 +25,8 @@ function App() {
         setCart(JSON.parse(localStorage.getItem('Cart')) || []);
     }, [])
 
+   
+
     const addToCart = async (productToAdd) => {
         if (cart.find( (prod) => prod.name === productToAdd.name)) {
             let newCart = cart.map((prod) => {
@@ -34,19 +36,16 @@ function App() {
                 return prod;
             });
             setCart(newCart);
+            localStorage.setItem('Cart', JSON.stringify(newCart));
             return;
         }
         else {
             setCart([...cart, productToAdd]);
-            console.log(cart);
+            localStorage.setItem('Cart', JSON.stringify([...cart, productToAdd]));
+            //console.log(cart);
         }
-        //localStorage.setItem('Cart', JSON.stringify(cart));
     }
 
-    useEffect(() => {
-        localStorage.setItem('Cart', JSON.stringify(cart));
-        console.log(cart);
-    }, [cart])
 
     return (
         <Router>
@@ -54,7 +53,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home products={products}/>} />
                 <Route path="/product/:productName" element={<Product products={products} addToCart={addToCart}/>} />
-                <Route path="/cart" element={<Cart products={products} cart={cart}/>} />
+                <Route path="/cart" element={<Cart products={products} cart={cart} setCart={setCart}/>} />
                 <Route path="/dashboard" element={<Dashboard />} />
             </Routes>
         </Router>
