@@ -2,8 +2,9 @@ import React from "react";
 import {useEffect, useState } from 'react'
 import { useParams } from "react-router";
 import { useNavigate } from "react-router";
+import Card from "./items/Cards";
 
-function Product({ products }) {
+function Product({ products, addToCart }) {
     let params = useParams()
     let productName = params.productName
 
@@ -11,14 +12,35 @@ function Product({ products }) {
 
     const [selectedSize, setSelectedSize] = useState(null);
     const [selectedColor, setSelectedColor] = useState(null);
+    const [addedToCartMssg, setAddedToCart] = useState(false);
+    const [soldOut, setSoldOut] = useState(false);
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [])
-    function navigateToProduct(prodName) {
-        window.scrollTo(0, 0);
-        navigate(`/product/${prodName}`)
-    }
+
+    const handleAddToCart = () => {
+        if (product?.stock > 0) {
+            let cardProduct = { 
+                name: product.name, 
+                image: product.image[0], 
+                price: product.price,
+                units: 1, 
+                size: selectedSize, 
+                color: selectedColor 
+            };
+            addToCart(cardProduct);
+            // Simulate adding to cart logic here
+            setAddedToCart(true);
+
+            // Hide message after 3 seconds
+            setTimeout(() => setAddedToCart(false), 3000);
+        }
+        else {
+            setSoldOut(true);
+            setTimeout(() => setSoldOut(false), 3000);
+        }
+    };
 
     let navigate = useNavigate()
 
@@ -58,21 +80,32 @@ function Product({ products }) {
                         style = {{ color: product?.stock > 3 ? "darkgreen" : product?.stock > 0 ? "darkgoldenrod" : "red" }} >
                         {product?.stock > 0 ? `We have ${product?.stock} in stock` : "Out of stock"}
                     </p>
-                    <button className="p-but-add" style = {{cursor: product?.stock > 0 ? "pointer":"not-allowed"}}>Add to cart</button>
+                    <button className="p-but-add" 
+                        style = {{cursor: product?.stock > 0 ? "pointer":"not-allowed"}}
+                        onClick={() => handleAddToCart() }>
+                            Add to cart
+                    </button>
+                    {addedToCartMssg && <div className="cart-message">Item added to cart!</div>}
+                    {soldOut && <div className="cart-message-red">The product {product.name} is already sold out</div>}
                 </div>
             </div>
 
-            /////////////
+            {products.some(p => p.category === product.category && p.name !== product.name) && (
+                <div className="category-related">
+                    <h2 className="subdivision">Related Products</h2>
+                    <div className="products">
+                        {products.map((productMap) => (
+                            productMap.category === product.category && productMap.name !== product.name && <Card product={productMap} />
+                        ))}
+                    </div>
+                </div>
+            )}
 
-            <div className="category-related">
-                <h2>Related products</h2>
+            <div className="more-products">
+                <h2 className="subdivision">More Products</h2>
                 <div className="products">
                     {products.map((productMap) => (
-                        <div className="product" key={productMap._id} onClick={() => navigateToProduct(productMap.name)}>
-                            <img src={productMap.image[0]} alt="" />
-                            <h2>{productMap.name.toUpperCase()}</h2>
-                            <p>{productMap.price}€</p>
-                        </div>
+                        <Card product={productMap} />
                     ))}
                 </div>
             </div>

@@ -9,8 +9,8 @@ import Navbar from "./components/Navbar.jsx";
 import './App.css'
 
 function App() {
-    const [count, setCount] = useState(0)
     const [products, setProducts] = useState([])
+    const [cart, setCart] = useState([])
 
     useEffect(() => {
         axios.get("http://localhost:4040/product/all")
@@ -21,15 +21,35 @@ function App() {
             .catch((err) => {
                 console.log(err);
             })
+        
+        setCart(JSON.parse(localStorage.getItem('Cart')) || []);
     }, [])
+
+    function addToCart(productToAdd) {
+        if (cart.find( (prod) => prod.name === productToAdd.name)) {
+            let newCart = cart.map((prod) => {
+                if (prod.name === productToAdd.name) {
+                    prod.units += 1;
+                }
+                return prod;
+            });
+            setCart(newCart);
+            return;
+        }
+        else {
+            setCart([...cart, productToAdd]);
+            console.log(cart);
+        }
+        localStorage.setItem('Cart', JSON.stringify(cart));
+    }
 
     return (
         <Router>
             <Navbar />
             <Routes>
                 <Route path="/" element={<Home products={products}/>} />
-                <Route path="/product/:productName" element={<Product products={products}/>} />
-                <Route path="/cart" element={<Cart products={products}/>} />
+                <Route path="/product/:productName" element={<Product products={products} addToCart={addToCart}/>} />
+                <Route path="/cart" element={<Cart products={products} cart={cart}/>} />
                 <Route path="/dashboard" element={<Dashboard />} />
             </Routes>
         </Router>
