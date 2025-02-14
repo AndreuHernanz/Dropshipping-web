@@ -1,5 +1,6 @@
 import React from "react";
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
+import { useNavigate } from "react-router";
 
 function Cart({cart, setCart}) {
     const [totalPrice, setTotalPrice] = useState(0);
@@ -46,6 +47,8 @@ function Cart({cart, setCart}) {
         localStorage.setItem('Cart', JSON.stringify(newCart));
     }
 
+    let navigate = useNavigate()
+
     return (
         <>
         <div className="headerShadow"></div>
@@ -59,12 +62,12 @@ function Cart({cart, setCart}) {
                         <div className="c-info">
                             <h2 className="c-name">{product.name.toUpperCase()}</h2>
                             {product?.size && <p className="c-size">Size: {product.size.toUpperCase()}</p>}
-                            {product?.color && <p className="c-color">Color: {product.color} </p>}
+                            {product?.color && <div id="c-flex-color"><p className="c-color">Color:</p><div className="color-div" style={{backgroundColor: product.color}}></div></div>}
                         </div>
                         <div className="c-units">
                             <div onClick={() => removeProduct(product)} id="trash">X</div>
                             <p onClick={() => addUnits(product, false)}>-</p>
-                            <input type="number" value={product.units} />
+                            <section>{product.units}</section>
                             <p onClick={() => addUnits(product, true)}>+</p>
                         </div>
                         <div className="c-price">
@@ -84,7 +87,7 @@ function Cart({cart, setCart}) {
                     </div>
                 </div>
                 <div className="c-pay">
-                    <div>
+                    <div onClick={() => navigate('/checkout')}>
                         <h2>Pay</h2>
                     </div>
                 </div>

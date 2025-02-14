@@ -10,14 +10,41 @@ function Product({ products, addToCart }) {
 
     const product = products.find((productIndx) => productIndx.name === productName)
 
-    const [selectedSize, setSelectedSize] = useState(null);
+    const [selectedSize, setSelectedSize] = useState("m");
     const [selectedColor, setSelectedColor] = useState(null);
     const [addedToCartMssg, setAddedToCart] = useState(false);
     const [soldOut, setSoldOut] = useState(false);
 
+    const [imgAnimation, setImgAnimation] = useState(0);
+    const [topPos, setTopPos] = useState(0);
+    const [leftPos, setLeftPos] = useState(0);
+    const [cornerPosX, setCornerPosX] = useState(0);
+    const [cornerPosY, setCornerPosY] = useState(0);
+    const [widthPos, setWidthPos] = useState(300);
+
+    const setInit = () => {
+        let addPos = document.getElementById("add-0").getBoundingClientRect();
+        setTopPos(addPos.y + addPos.height / 2 - 40);
+        setLeftPos(addPos.x + addPos.width / 2 - 40);
+    }
+
     useEffect(() => {
         window.scrollTo(0, 0);
+        if (product?.color[0] !== '') {
+            setSelectedColor(product?.color[0]);
+        }
+
+        let navCart = document.getElementById("nav-cart").getBoundingClientRect();
+        setCornerPosX(navCart.x);
+        setCornerPosY(navCart.y);
+        console.log("cornerPosX", navCart);
     }, [])
+
+    useEffect(() => {
+        setTimeout(() => setInit(), 100);
+    },[products])
+
+    
 
     const handleAddToCart = () => {
         if (product?.stock > 0) {
@@ -35,6 +62,18 @@ function Product({ products, addToCart }) {
 
             // Hide message after 3 seconds
             setTimeout(() => setAddedToCart(false), 3000);
+
+            // calculate position of the image
+            let addPos = document.getElementById("add-0").getBoundingClientRect();
+            setTopPos(addPos.y + addPos.height / 2 - 40);
+            setLeftPos(addPos.x + addPos.width / 2 - 40);
+            
+            // translate image to 0,width
+            //setCornerPosX(window.innerWidth - 180); // Adjust width if the image is bigger
+            //setCornerPosY(0); // Margin from the top
+            
+            setImgAnimation(true);
+            setTimeout(() => setImgAnimation(false), 1000);
         }
         else {
             setSoldOut(true);
@@ -51,7 +90,9 @@ function Product({ products, addToCart }) {
                 <div className="image-view">
                     {product && product.image.map(
                         (imageIndx, index) => 
-                        (<div className="image-product-view" key={index}><img src={imageIndx} alt={product.name} /></div> )
+                        (<div className="image-product-view" key={index} id={`add-${index}`}>
+                            <img src={imageIndx} alt={product.name} />
+                        </div> )
                     )}
                 </div>
                 <div className="product-info">
@@ -72,7 +113,8 @@ function Product({ products, addToCart }) {
                             (colorIndx, index) => 
                             (<div key={index} 
                                 onClick={() => setSelectedColor(colorIndx)}
-                                className={selectedColor === colorIndx ? "color-div color-active":"color-div"} style={{backgroundColor: colorIndx}}>
+                                className={selectedColor === colorIndx ? "color-div color-active":"color-div"} 
+                                style={{backgroundColor: colorIndx}}>
                             </div> )
                         )}
                     </div>
@@ -80,7 +122,7 @@ function Product({ products, addToCart }) {
                         style = {{ color: product?.stock > 3 ? "darkgreen" : product?.stock > 0 ? "darkgoldenrod" : "red" }} >
                         {product?.stock > 0 ? `We have ${product?.stock} in stock` : "Out of stock"}
                     </p>
-                    <button className="p-but-add" 
+                    <button className="p-but-add"
                         style = {{cursor: product?.stock > 0 ? "pointer":"not-allowed"}}
                         onClick={() => handleAddToCart() }>
                             Add to cart
@@ -95,7 +137,8 @@ function Product({ products, addToCart }) {
                     <h2 className="subdivision">Related Products</h2>
                     <div className="products">
                         {products.map((productMap) => (
-                            productMap.category === product.category && productMap.name !== product.name && <Card product={productMap} />
+                            productMap.category === product.category && productMap.name !== product.name 
+                                && <Card product={productMap} />
                         ))}
                     </div>
                 </div>
@@ -109,6 +152,20 @@ function Product({ products, addToCart }) {
                     ))}
                 </div>
             </div>
+
+            {<img
+                className="img-animation"
+                src={product?.image[0]}
+                alt=""
+                style={{
+                    top: `${imgAnimation ? cornerPosY : topPos}px`,
+                    left: `${imgAnimation ? cornerPosX : leftPos}px`,
+                    position: "fixed",
+                    width: `${imgAnimation ? 20 : widthPos}px` , // Optional size adjustments
+                    visibility: `${imgAnimation ? "visible" : "hidden"}`,
+                    transition: "top 1s ease, left 1s ease, width 1s ease"
+                }}
+            />}
         </>
     );
 }

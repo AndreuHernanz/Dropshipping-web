@@ -18,7 +18,7 @@ const Navbar = () => {
         <div>
             <nav className="navbar">
                         <NavLink
-                            to={"/cart"}>
+                            to={"/cart"} id="nav-cart">
                             Cart
                         </NavLink>
                         <NavLink

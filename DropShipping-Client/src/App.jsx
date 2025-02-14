@@ -5,6 +5,7 @@ import Home from "./components/Home.jsx";
 import Product from "./components/Product.jsx";
 import Cart from "./components/Cart.jsx";
 import Dashboard from "./components/Dashboard.jsx";
+import Checkout from './components/Checkout.jsx';
 import Navbar from "./components/Navbar.jsx";
 import './App.css'
 
@@ -55,6 +56,7 @@ function App() {
                 <Route path="/product/:productName" element={<Product products={products} addToCart={addToCart}/>} />
                 <Route path="/cart" element={<Cart products={products} cart={cart} setCart={setCart}/>} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/checkout" element={<Checkout cart={cart} />} />
             </Routes>
         </Router>
     )
