@@ -11,10 +11,11 @@
   "dependencies": {
     "bcrypt": "*",
     "cors": "*",
+    "dotenv": "*",
     "express": "*",
     "jsonwebtoken": "*",
     "mongoose": "*",
     "nodemailer": "*",
-    "dotenv": "*"
+    "stripe": "^17.6.0"
   }
 }

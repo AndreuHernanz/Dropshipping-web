@@ -324,17 +324,18 @@ a {
     }
 
   }
-  #trash{
-    transition: all 0.9s ease-out;
+  .trash{
+    transition: all 0.6s ease-out;
     min-height: 30px;
     cursor: default;
     width: 0;
     margin: 0;
-    color: #00000000;
     align-content: center;
     justify-content: center;
+    color: black;
+    opacity: 0;
   }
-  .cart-product:hover #trash{
+  .cart-product:hover .trash{
     
     cursor: pointer;
     min-height: 30px;
@@ -342,7 +343,10 @@ a {
     align-content: center;
     justify-content: center;
     margin-right: 5px;
-    color: #000000;
+    opacity: 1;
+  }
+  .trash:hover{
+    color: red;
   }
 
   .c-total{
@@ -373,7 +377,7 @@ a {
 
     display: flex;
 
-    div {
+    .c-pay-but {
       width: 200px;
       background-color: white;
       border: 3px solid gold;
@@ -381,10 +385,25 @@ a {
       padding: 1rem;
       margin-left: auto;
     }
-    div:hover{
+    .c-pay-but:hover{
       background-color: rgb(255, 246, 198);
       transition: all 0.3s;
       box-shadow: 0 0 10px rgba(255, 234, 0, 0.51);
+      transform: translateY(-5px);
+    }
+
+    .c-clear-but {
+      width: 100px;
+      background-color: white;
+      border: 3px solid red;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
+      padding: 1rem;
+      margin-bottom: auto;
+    }
+    .c-clear-but:hover{
+      background-color: rgb(255, 198, 198);
+      transition: all 0.3s;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.51);
       transform: translateY(-5px);
     }
   }
@@ -486,7 +505,10 @@ a {
   }
 }
 
-/* FOOTER */
+
+
+
+/* ANIMATION */
 .img-animation{
   position: fixed;
   transition: all 0.3s ease-in-out;

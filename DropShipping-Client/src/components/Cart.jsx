@@ -65,7 +65,7 @@ function Cart({cart, setCart}) {
                             {product?.color && <div id="c-flex-color"><p className="c-color">Color:</p><div className="color-div" style={{backgroundColor: product.color}}></div></div>}
                         </div>
                         <div className="c-units">
-                            <div onClick={() => removeProduct(product)} id="trash">X</div>
+                            <div onClick={() => removeProduct(product)} className="trash">X</div>
                             <p onClick={() => addUnits(product, false)}>-</p>
                             <section>{product.units}</section>
                             <p onClick={() => addUnits(product, true)}>+</p>
@@ -87,10 +87,10 @@ function Cart({cart, setCart}) {
                     </div>
                 </div>
                 <div className="c-pay">
-                    <div>
-                        clear cart
+                    <div className="c-clear-but" onClick={() => setCart([])}>
+                        <h4>Clear cart </h4>
                     </div>
-                    <div onClick={() => navigate('/checkout')}>
+                    <div className="c-pay-but" onClick={() => navigate('/checkout')}>
                         <h2>Pay</h2>
                     </div>
                 </div>

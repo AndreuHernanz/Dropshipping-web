@@ -2,6 +2,28 @@ const app      = require('express')()
 require("dotenv").config()
 const port     = process.env.PORT || 4444 
 
+
+const stripe = require('stripe')('APIKEY');
+
+app.post('/create-checkout-session', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+        price: 'price_1QtVWiEgDHE5Jv010RbCWbDf',
+        quantity: 1,
+      },
+    ],
+    mode: 'payment',
+    success_url: "https://www.youtube.com/", //`${YOUR_DOMAIN}?success=true`,
+    cancel_url: "https://www.google.com/", //`${YOUR_DOMAIN}?canceled=true`,
+});
+
+  res.redirect(303, session.url);
+});
+
+///==========================================================================
+
 app.use(require("express").urlencoded({extended: true}))
 app.use(require("express").json())
 
