@@ -1,10 +1,30 @@
-
 import React, { useState, useEffect } from "react";
-import "../App.css";
+import axios from "axios";
+//import "../App.css";
 
-const ProductDisplay = () => (
-    <>
-        <section className="products">
+
+
+export default function Checkout() {
+    const handleCheckout = async () => {
+        try {
+          // Sending POST request to create checkout session
+          const response = await axios.post("http://localhost:4040/create-checkout-session");
+    
+          // Retrieve the URL returned from the backend
+          const { url } = response.data;
+    
+          // Open Stripe Checkout in a new window
+          window.open(url, "_blank", "width=500,height=700");
+        } catch (error) {
+          console.error("Error creating checkout session:", error);
+          // You could display a message to the user about the failure
+          alert("An error occurred while creating the checkout session. Please try again.");
+        }
+      };
+    
+      return (
+        <>
+            <section className="products">
             <div className="product">
                 <img
                     src="https://i.imgur.com/EHyR2nP.png"
@@ -15,47 +35,12 @@ const ProductDisplay = () => (
                 <h5>$20.00</h5>
                 </div>
             </div>
-        </section>
-        <form action="/create-checkout-session" method="POST">
-            <button type="submit">
-                Checkout
-            </button>
-        </form>
-    </>
-);
-
-const Message = ({ message }) => (
-  <section>
-    <p>{message}</p>
-  </section>
-);
-
-export default function Checkout() {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    // Check to see if this is a redirect back from Checkout
-    const query = new URLSearchParams(window.location.search);
-
-    if (query.get("success")) {
-      setMessage("Order placed! You will receive an email confirmation.");
-    }
-
-    if (query.get("canceled")) {
-      setMessage(
-        "Order canceled -- continue to shop around and checkout when you're ready."
+            </section>
+            <form action="/create-checkout-session" method="POST">
+                <button onClick={handleCheckout}>Checkout</button>
+            </form>
+        </>
       );
-    }
-  }, []);
-
-  return message ? (
-    <Message message={message} />
-  ) : (
-    <>
-        <div className="headerShadow"></div>
-        <ProductDisplay />
-    </>
-  );
 }
 
 
