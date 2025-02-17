@@ -87,6 +87,9 @@ function Cart({cart, setCart}) {
                     </div>
                 </div>
                 <div className="c-pay">
+                    <div>
+                        clear cart
+                    </div>
                     <div onClick={() => navigate('/checkout')}>
                         <h2>Pay</h2>
                     </div>

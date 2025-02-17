@@ -371,6 +371,8 @@ a {
     max-width: 800px;
     user-select: none;
 
+    display: flex;
+
     div {
       width: 200px;
       background-color: white;
@@ -444,6 +446,7 @@ a {
     border: 1px solid grey;
     background-color: white;
     color: black;
+    color: rgb(86, 18, 18);
   }
   select {
     width: 100%;

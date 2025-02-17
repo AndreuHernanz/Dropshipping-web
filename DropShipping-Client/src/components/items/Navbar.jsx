@@ -1,7 +1,7 @@
 import React from "react";
 // We need to import the NavLink component from the router
 import { NavLink, useNavigate } from "react-router";
-import logo from '../assets/MShakeTurnAround.png'; // with import
+import logo from '../../assets/MShakeTurnAround.png'; // with import
 
 const Navbar = () => {
 

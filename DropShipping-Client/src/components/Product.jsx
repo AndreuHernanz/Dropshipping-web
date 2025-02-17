@@ -10,7 +10,7 @@ function Product({ products, addToCart }) {
 
     const product = products.find((productIndx) => productIndx.name === productName)
 
-    const [selectedSize, setSelectedSize] = useState("m");
+    const [selectedSize, setSelectedSize] = useState(null);
     const [selectedColor, setSelectedColor] = useState(null);
     const [addedToCartMssg, setAddedToCart] = useState(false);
     const [soldOut, setSoldOut] = useState(false);
@@ -37,11 +37,19 @@ function Product({ products, addToCart }) {
         let navCart = document.getElementById("nav-cart").getBoundingClientRect();
         setCornerPosX(navCart.x);
         setCornerPosY(navCart.y);
-        console.log("cornerPosX", navCart);
+        
+        
     }, [])
 
     useEffect(() => {
         setTimeout(() => setInit(), 100);
+        
+        if (product?.size[0] !== '') {
+            setSelectedSize("m");
+        }
+        if (product?.color[0] !== '') {
+            setSelectedColor(product.color[0]);
+        }
     },[products])
 
     
