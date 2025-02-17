@@ -3,23 +3,25 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 
 const ProductDisplay = () => (
-  <section>
-    <div className="product">
-      <img
-        src="https://i.imgur.com/EHyR2nP.png"
-        alt="The cover of Stubborn Attachments"
-      />
-      <div className="description">
-      <h3>Stubborn Attachments</h3>
-      <h5>$20.00</h5>
-      </div>
-    </div>
-    <form action="/create-checkout-session" method="POST">
-      <button type="submit">
-        Checkout
-      </button>
-    </form>
-  </section>
+    <>
+        <section className="products">
+            <div className="product">
+                <img
+                    src="https://i.imgur.com/EHyR2nP.png"
+                    alt="The cover of Stubborn Attachments"
+                    />
+                <div className="description">
+                <h3>Stubborn Attachments</h3>
+                <h5>$20.00</h5>
+                </div>
+            </div>
+        </section>
+        <form action="/create-checkout-session" method="POST">
+            <button type="submit">
+                Checkout
+            </button>
+        </form>
+    </>
 );
 
 const Message = ({ message }) => (
@@ -49,7 +51,10 @@ export default function Checkout() {
   return message ? (
     <Message message={message} />
   ) : (
-    <ProductDisplay />
+    <>
+        <div className="headerShadow"></div>
+        <ProductDisplay />
+    </>
   );
 }
 

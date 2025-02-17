@@ -16,6 +16,7 @@
     "jsonwebtoken": "*",
     "mongoose": "*",
     "nodemailer": "*",
-    "stripe": "^17.6.0"
+    "stripe": "^17.6.0",
+    "proxy": "<http://localhost:4242>" 
   }
 }
