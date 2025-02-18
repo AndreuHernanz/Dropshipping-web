@@ -43,7 +43,8 @@ class ProductsController {
 				size: product.size.split(", "),
 				color: product.color.split("/ "),
 				description: product.description,
-				category: product.category
+				category: product.category,
+				price_id: product.price_id
 			}
 			const existingProduct = await ProductsDB.findOne({name: new_product.name})
 			if (existingProduct) {
@@ -60,6 +61,30 @@ class ProductsController {
 				//return res.send({ ok: true, data: `Product ${newProduct.name} added successfully`})
 			}
 
+		}
+		catch( error ){
+			res.send({ok:false,message:error})
+		}
+	}
+
+	async updateProduct (req, res){
+		console.log(req.body)
+		try{
+			const { product } = req.body
+			const updated_product = {
+				name: product.name,
+				price: parseFloat(product.price),
+				image: product.image, //split the string into an array
+				stock: parseInt(product.stock),//parseInt(
+				size: product.size,//.split(", "),
+				color: product.color,//.split("/ "),
+				description: product.description,
+				category: product.category,
+				price_id: product.price_id
+			}
+			console.log(updated_product)
+			const product_updated = await ProductsDB.updateOne({name:product.name}, updated_product)
+			return res.send({ ok: true, message: updated_product})
 		}
 		catch( error ){
 			res.send({ok:false,message:error})

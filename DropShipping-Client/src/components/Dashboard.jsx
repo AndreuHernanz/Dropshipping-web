@@ -1,31 +1,20 @@
 import React from "react";
+import axios from "axios";
+import Board from "./items/Boards";
 
-function Dashboard({products, setProducts}) {  
+function Dashboard({products, setProducts}) {
 
-    function addUnits(product, positive) {
-        let newCart = cart.map((prod) => {
-            if (prod.name === product.name) {
-                if (positive) {
-                    prod.units += 1;
-                }
-                else {
-                    prod.units -= 1;
-                    if (prod.units === 0) {
-                        return null;
-                    }
-                }
-            }
-            return prod;
-        });
-        newCart = newCart.filter((prod) => prod !== null);
-        setCart(newCart);
-        localStorage.setItem('Cart', JSON.stringify(newCart));
-    }
+    function updateProduct(product) {
+        axios.post("http://localhost:4040/product/update", {product})
+            .then(response => {
+                console.log("Product updated successfully:", response.data);
+            })
+            .catch(error => {
+                console.error("There was an error updating the product!", error);
+            });
 
-    function removeProduct(product) {
-        let newCart = cart.filter((prod) => prod.name !== product.name);
-        setCart(newCart);
-        localStorage.setItem('Cart', JSON.stringify(newCart));
+        console.log(product);
+           
     }
 
     return (
@@ -34,26 +23,41 @@ function Dashboard({products, setProducts}) {
 <div className="dashboard-view">
     <h1>Dashboard</h1>
     <div className="dash-products">
-    {products.map((product, index) => (
+
+    {products.map((productMap, index) => (
+        <Board products={products} setProducts={setProducts} product={productMap} index={index}/>
+    ))}
+
+    {/*products.map((product, index) => (
+        <div className="dash-container">
+        <button className="d-trash" onClick={() => {}}>
+            <img src={Trash} alt="Delete" />
+        </button>
         <div className="dash-product" key={product.name}>
             <img className="d-image" src={product.image[0]} alt="" />
             <div className="d-info">
-                <p>Name</p>
-                <input 
-                    className="d-name" 
-                    defaultValue={product.name} 
-                    onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                          const newProducts = [...products];
-                          newProducts[index].name = e.target.value;
-                          setProducts(newProducts);
-                        }
-                      }}
-                />
+                <div style={{display: "flex", gap: "1em", alignItems: "center"}}>
+                    <p>Name</p>
+                    <input 
+                        className="d-name" 
+                        defaultValue={product.name} 
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                                const newProducts = [...products];
+                                newProducts[index].name = e.target.value;
+                                setProducts(newProducts);
+                            }
+                        }}
+                        />
+                        <div className="d-id">
+                            id: {product._id}
+                        </div>
+                </div>
                 <p>Description</p>
-                <textarea rows="4" cols="50"
+                <textarea rows="3" cols="50"
                     className="d-description" 
                     defaultValue={product.description} 
+                    style={{ maxWidth: "600px" }}
                     onKeyDown={(e) => {
                         if (e.key === 'Enter') {
                           const newProducts = [...products];
@@ -62,16 +66,14 @@ function Dashboard({products, setProducts}) {
                         }
                       }}
                 />
-                {/* {product?.size && <p className="c-size">Size: {product.size.toUpperCase()}</p>} */}
-                {/* {product?.color && <div id="c-flex-color"><p className="c-color">Color:</p><div className="color-div" style={{backgroundColor: product.color}}></div></div>} */}
             </div>
             <div className="d-properties">
                 <div className="d-size">
                     <p>Size → (a, b, c)</p>
                     <input                     
-                    value={product.size.toString()} 
+                    defaultValue={product.size.join(', ')} 
                     type="text"
-                    style={{ maxWidth: "7em", textAlign: "right" }}
+                    style={{ maxWidth: "7em", textAlign: "left" }}
                     onChange={(e) => {
                         const newProducts = [...products];
                         newProducts[index].size = e.target.value.split(", ");
@@ -81,7 +83,16 @@ function Dashboard({products, setProducts}) {
                 </div>
                 <div className="d-color">
                     <p>Color → (x/ y/ z)</p>
-                    <input />
+                    <textarea rows="2" cols="20"                     
+                    defaultValue={product.color.join('/ ')} 
+                    type="text"
+                    style={{ textAlign: "left" }}
+                    onChange={(e) => {
+                        const newProducts = [...products];
+                        newProducts[index].size = e.target.value.split("/ ");
+                        setProducts(newProducts);
+                    }}
+                    />
                 </div>
             </div>
             <div className="d-about">
@@ -112,10 +123,9 @@ function Dashboard({products, setProducts}) {
                     />
                 </div>
             </div>
-            <div>
+            <div className="d-config">
                 <p>Category</p>
                 <input 
-                    className="c-name" 
                     defaultValue={product.category} 
                     style={{ maxWidth: "8em", marginRight: "1em" }}
                     onKeyDown={(e) => {
@@ -126,10 +136,26 @@ function Dashboard({products, setProducts}) {
                         }
                       }}
                 />
+                <p>Price_ID</p>
+                <input 
+                    defaultValue={product.price_id} 
+                    style={{ maxWidth: "12em", marginRight: "1em" }}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          const newProducts = [...products];
+                          newProducts[index].price_id = e.target.value;
+                          setProducts(newProducts);
+                        }
+                      }}
+                />
             </div>
             
         </div>
-    ))}
+        <button className="d-upload" onClick={() => updateProduct(product)}>
+            <img src={Publish} alt="Publish" />
+        </button>
+        </div>
+    ))*/}
 </div>
 </div>
 </>
