@@ -80,7 +80,6 @@ function Boards({ products, setProducts, product, index }) {
                                 defaultValue={namename} 
                                 type="text"
                                 style={{ color: nameBool ? colorUploaded : colorNotUploaded }}
-                                //style={{ maxWidth: "7em", color: sizeBool ? colorUploaded : colorNotUploaded }}
                                 onChange={(e) => {
                                     const newProducts = [...products];
                                     newProducts[index].name = e.target.value;
