@@ -55,9 +55,8 @@ function App() {
                 <Route path="/" element={<Home products={products}/>} />
                 <Route path="/product/:productName" element={<Product products={products} addToCart={addToCart}/>} />
                 <Route path="/cart" element={<Cart products={products} cart={cart} setCart={setCart}/>} />
-                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/dashboard" element={<Dashboard products={products} setProducts={setProducts} />} />
                 <Route path="/checkout" element={<Checkout cart={cart} />} />
-                {/*<Route path="/checkout" render={(props) <Checkout cart={cart} />} /> */}
             </Routes>
         </Router>
     )

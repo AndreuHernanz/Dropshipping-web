@@ -4,11 +4,32 @@ import axios from "axios";
 
 
 
-export default function Checkout() {
+export default function Checkout({cart}) {
+
+    const [totalPrice, setTotalPrice] = useState(0);
+    
+     useEffect(() => {
+         let total = 0;
+         cart.forEach((product) => {
+             total += product.price * product.units;
+         });
+         setTotalPrice(total);
+     }, [cart]);
+
+     function getNItems(cart) {
+         let nItems = 0;
+         cart.forEach((product) => {
+             nItems += product.units;
+         });
+         return nItems;
+     }
+
     const handleCheckout = async () => {
         try {
           // Sending POST request to create checkout session
-          const response = await axios.post("http://localhost:4040/create-checkout-session");
+          const response = await axios.post("http://localhost:4040/create-checkout-session", 
+            // TODO: array of objects of priceid and quantity
+          );
     
           // Retrieve the URL returned from the backend
           const { url } = response.data;
@@ -24,21 +45,35 @@ export default function Checkout() {
     
       return (
         <>
-            <section className="products">
-            <div className="product">
-                <img
-                    src="https://i.imgur.com/EHyR2nP.png"
-                    alt="The cover of Stubborn Attachments"
-                    />
-                <div className="description">
-                <h3>Stubborn Attachments</h3>
-                <h5>$20.00</h5>
-                </div>
-            </div>
-            </section>
-            <form action="/create-checkout-session" method="POST">
+        <div className="headerShadow"></div>
+        <div className="checkout">
+            <h1>Cart</h1>
+             <div className="checkout-products">
+                 {cart.map((product) => (
+                     <div key={product.id} className="checkout-product">
+                         <div className="checkout-product-info">
+                             <div className="checkout-text"> {product.name.toUpperCase()} </div>
+                             {product?.size && <div className="checkout-text checkout-grey"> Size: {product?.size.toUpperCase()}</div>}
+                             {product?.color && <div className="checkout-text checkout-grey"> Color: {product?.color}</div>}
+                         </div>
+                         <div>{product.units > 1 && <div className="checkout-text checkout-grey"> Units: {product.units}</div>}</div>
+                         <div className="checkout-product-price">
+                             {product.units > 1 && <div className="checkout-text checkout-grey"> {product.price.toFixed(2)}€</div>}
+                         </div>
+                         <div className="checkout-product-price">
+                             <div className="checkout-text"> {(product.price * product.units).toFixed(2)}€</div>
+                         </div>
+                     </div>
+                 ))}
+                 <div className="checkout-total">
+                         <p className="checkout-text checkout-grey">Total items: {getNItems(cart)}</p>
+                         <p className="checkout-text">Total: {totalPrice.toFixed(2)}€</p>
+                 </div>
+             </div>
+             <h1>Checkout</h1>
                 <button onClick={handleCheckout}>Checkout</button>
-            </form>
+            <div className="headerShadow"></div>
+        </div>
         </>
       );
 }

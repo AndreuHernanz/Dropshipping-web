@@ -50,53 +50,53 @@ function Cart({cart, setCart}) {
     let navigate = useNavigate()
 
     return (
-        <>
-        <div className="headerShadow"></div>
-        <div className="cart-view">
-            <h1>Cart</h1>
-            <p>Here you can see the products you have added to your cart</p>
-            <div className="cart-products">
-                {cart.map((product) => (
-                    <div className="cart-product" key={product.name}>
-                        <img className="c-image" src={product.image} alt="" />
-                        <div className="c-info">
-                            <h2 className="c-name">{product.name.toUpperCase()}</h2>
-                            {product?.size && <p className="c-size">Size: {product.size.toUpperCase()}</p>}
-                            {product?.color && <div id="c-flex-color"><p className="c-color">Color:</p><div className="color-div" style={{backgroundColor: product.color}}></div></div>}
-                        </div>
-                        <div className="c-units">
-                            <div onClick={() => removeProduct(product)} className="trash">X</div>
-                            <p onClick={() => addUnits(product, false)}>-</p>
-                            <section>{product.units}</section>
-                            <p onClick={() => addUnits(product, true)}>+</p>
-                        </div>
-                        <div className="c-price">
-                            <h3 >{product.price}€</h3>
-                            {product.units > 1 && <h4 >{(product.price * product.units).toFixed(2)}€</h4>}
-                        </div>
-                        
-                    </div>
-                ))}
-                <div className="c-total">
-                    <div>
-                        <p>Total items: {getNItems(cart)}</p>
-                    </div>
-                    <section style={{border:"1px solid #e5e5e5"}} />
-                    <div>
-                        <h2 >Total: </h2><h1>{totalPrice.toFixed(2)}€</h1>
-                    </div>
+<>
+<div className="headerShadow"></div>
+<div className="cart-view">
+    <h1>Cart</h1>
+    <p>Here you can see the products you have added to your cart</p>
+    <div className="cart-products">
+        {cart.map((product) => (
+            <div className="cart-product" key={product.name}>
+                <img className="c-image" src={product.image} alt="" />
+                <div className="c-info">
+                    <h2 className="c-name">{product.name.toUpperCase()}</h2>
+                    {product?.size && <p className="c-size">Size: {product.size.toUpperCase()}</p>}
+                    {product?.color && <div id="c-flex-color"><p className="c-color">Color:</p><div className="color-div" style={{backgroundColor: product.color}}></div></div>}
                 </div>
-                <div className="c-pay">
-                    <div className="c-clear-but" onClick={() => setCart([])}>
-                        <h4>Clear cart </h4>
-                    </div>
-                    <div className="c-pay-but" onClick={() => navigate('/checkout')}>
-                        <h2>Pay</h2>
-                    </div>
+                <div className="c-units">
+                    <div onClick={() => removeProduct(product)} className="trash">X</div>
+                    <p onClick={() => addUnits(product, false)}>-</p>
+                    <section>{product.units}</section>
+                    <p onClick={() => addUnits(product, true)}>+</p>
                 </div>
+                <div className="c-price">
+                    <h3 >{product.price}€</h3>
+                    {product.units > 1 && <h4 >{(product.price * product.units).toFixed(2)}€</h4>}
+                </div>
+                
+            </div>
+        ))}
+        <div className="c-total">
+            <div>
+                <p>Total items: {getNItems(cart)}</p>
+            </div>
+            <section style={{border:"1px solid #e5e5e5"}} />
+            <div>
+                <h2 >Total: </h2><h1>{totalPrice.toFixed(2)}€</h1>
             </div>
         </div>
-        </>
+        <div className="c-pay">
+            <div className="c-clear-but" onClick={() => setCart([])}>
+                <h4>Clear cart </h4>
+            </div>
+            <div className="c-pay-but" onClick={() => navigate('/checkout')}>
+                <h2>Continue</h2>
+            </div>
+        </div>
+    </div>
+</div>
+</>
     );
 }
 

@@ -35,15 +35,18 @@ app.use("/user", require("./routes/usersRoutes.js"));
 
 // Stripe Checkout Route
 app.post("/create-checkout-session", async (req, res) => {
+  const { items } = req.body;
+
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
-      line_items: [
-        {
-          price: "price_1QtX2IEgDHE5Jv01bOOoipjf", // Replace with actual Price ID from Stripe Dashboard
-          quantity: 1,
-        },
-      ],
+      // line_items: [
+      //   {
+      //     price: "price_1QtX2IEgDHE5Jv01bOOoipjf", // Replace with actual Price ID from Stripe Dashboard
+      //     quantity: 1,
+      //   },
+      // ],
+      line_items: items,
       mode: "payment",
       success_url: `${process.env.CLIENT_URL}/checkout-success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.CLIENT_URL}/checkout-cancelled`,
