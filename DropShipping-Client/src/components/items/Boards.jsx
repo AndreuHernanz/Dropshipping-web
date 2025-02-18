@@ -130,7 +130,7 @@ function Boards({ products, setProducts, product, index }) {
                             style={{ textAlign: "left", color: colorBool ? colorUploaded : colorNotUploaded }}
                             onChange={(e) => {
                                 const newProducts = [...products];
-                                newProducts[index].size = e.target.value.split("/ ");
+                                newProducts[index].color = e.target.value.split("/ ");
                                 setProducts(newProducts);
                                 setUploadedBool(false);
                                 setColorBool(false);
