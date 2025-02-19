@@ -40,6 +40,7 @@ app.use("/user", require("./routes/usersRoutes.js"));
    console.log(items);
    try {
      const session = await stripe.checkout.sessions.create({
+       //ui_mode: 'embedded',
        payment_method_types: ["card"],
        // line_items: [
        //   {
@@ -49,10 +50,13 @@ app.use("/user", require("./routes/usersRoutes.js"));
        // ],
        line_items: items,
        mode: "payment",
+       
+       //return_url: `${process.env.CLIENT_URL}/return?session_id={CHECKOUT_SESSION_ID}`,
        success_url: `${process.env.CLIENT_URL}/checkout-success?session_id={CHECKOUT_SESSION_ID}`,
        cancel_url: `${process.env.CLIENT_URL}/checkout-cancelled`,
      });
      res.json({ url: session.url }); // Send session URL to frontend
+     //res.send({clientSecret: session.client_secret});
    } catch (error) {
      res.status(500).json({ error: error.message });
    }

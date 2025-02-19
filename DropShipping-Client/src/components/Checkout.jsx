@@ -4,7 +4,7 @@ import axios from "axios";
 
 
 
-export default function Checkout({cart}) {
+export default function Checkout({cart, CheckoutForm}) {
 
     const [totalPrice, setTotalPrice] = useState(0);
     
@@ -77,6 +77,7 @@ export default function Checkout({cart}) {
              </div>
              <h1>Checkout</h1>
                 <button onClick={handleCheckout}>Checkout</button>
+                {CheckoutForm()}
             <div className="headerShadow"></div>
         </div>
         </>

@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Board from "./items/Boards";
+import "../styles/Dashboard.css";
 
 function Dashboard({products, setProducts}) {
 

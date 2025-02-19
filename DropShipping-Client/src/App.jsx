@@ -9,6 +9,44 @@ import Checkout from './components/Checkout.jsx';
 import Navbar from "./components/items/Navbar.jsx";
 import './App.css'
 
+import { useCallback } from "react";
+import {loadStripe} from '@stripe/stripe-js';
+import {
+  EmbeddedCheckoutProvider,
+  EmbeddedCheckout
+} from '@stripe/react-stripe-js';
+
+// Make sure to call `loadStripe` outside of a component’s render to avoid
+// recreating the `Stripe` object on every render.
+// This is your test secret API key.
+///////const stripePromise = loadStripe(process.env.STRIPE_PUBLIC_KEY);
+
+
+const CheckoutForm = () => {
+    const fetchClientSecret = useCallback(() => {
+      // Create a Checkout Session
+      return fetch("/create-checkout-session", {
+        method: "POST",
+      })
+        .then((res) => res.json())
+        .then((data) => data.clientSecret);
+    }, []);
+  
+    const options = {fetchClientSecret};
+  
+    return (
+      <div id="checkout">
+        <EmbeddedCheckoutProvider
+          stripe={stripePromise}
+          options={options}
+        >
+          <EmbeddedCheckout />
+        </EmbeddedCheckoutProvider>
+      </div>
+    )
+  }
+
+
 function App() {
     const [products, setProducts] = useState([])
     const [cart, setCart] = useState([])
@@ -56,7 +94,7 @@ function App() {
                 <Route path="/product/:productName" element={<Product products={products} addToCart={addToCart}/>} />
                 <Route path="/cart" element={<Cart products={products} cart={cart} setCart={setCart}/>} />
                 <Route path="/dashboard" element={<Dashboard products={products} setProducts={setProducts} />} />
-                <Route path="/checkout" element={<Checkout cart={cart} />} />
+                <Route path="/checkout" element={<Checkout cart={cart} CheckoutForm={CheckoutForm} />} />
             </Routes>
         </Router>
     )
