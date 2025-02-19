@@ -26,9 +26,14 @@ export default function Checkout({cart}) {
 
     const handleCheckout = async () => {
         try {
+
+            const productsCartCheckoutInfo = cart.map((product) => {
+                return { price: product.price_id, quantity: product.units };
+                });
           // Sending POST request to create checkout session
           const response = await axios.post("http://localhost:4040/create-checkout-session", 
             // TODO: array of objects of priceid and quantity
+            { items: productsCartCheckoutInfo }
           );
     
           // Retrieve the URL returned from the backend

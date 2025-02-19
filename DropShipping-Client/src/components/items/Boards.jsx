@@ -57,7 +57,7 @@ function Boards({ products, setProducts, product, index }) {
                 <button className="d-trash" onClick={() => {}}>
                     <img src={Trash} alt="Delete" />
                 </button>
-                <div className="dash-product" key={product.name}>
+                <div className="dash-product" key={product._id}>
                     <img className="d-image" src={product.image[0]} alt="" />
                     <div className="d-info">
                         <div style={{display: "flex", gap: "1em", alignItems: "center"}}>

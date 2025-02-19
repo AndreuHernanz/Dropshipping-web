@@ -38,18 +38,18 @@ function Product({ products, addToCart }) {
         setCornerPosX(navCart.x);
         setCornerPosY(navCart.y);
         
-        
-    }, [])
-
-    useEffect(() => {
-        setTimeout(() => setInit(), 100);
-        
         if (product?.size[0] !== '') {
             setSelectedSize("m");
         }
         if (product?.color[0] !== '') {
             setSelectedColor(product.color[0]);
         }
+    }, [])
+
+    useEffect(() => {
+        setTimeout(() => setInit(), 100);
+        
+        
     },[products])
 
     
@@ -62,7 +62,8 @@ function Product({ products, addToCart }) {
                 price: product.price,
                 units: 1, 
                 size: selectedSize, 
-                color: selectedColor 
+                color: selectedColor,
+                price_id: product.price_id
             };
             addToCart(cardProduct);
             // Simulate adding to cart logic here
@@ -75,10 +76,6 @@ function Product({ products, addToCart }) {
             let addPos = document.getElementById("add-0").getBoundingClientRect();
             setTopPos(addPos.y + addPos.height / 2 - 40);
             setLeftPos(addPos.x + addPos.width / 2 - 40);
-            
-            // translate image to 0,width
-            //setCornerPosX(window.innerWidth - 180); // Adjust width if the image is bigger
-            //setCornerPosY(0); // Margin from the top
             
             setImgAnimation(true);
             setTimeout(() => setImgAnimation(false), 1000);
@@ -144,9 +141,9 @@ function Product({ products, addToCart }) {
                 <div className="category-related">
                     <h2 className="subdivision">Related Products</h2>
                     <div className="products">
-                        {products.map((productMap) => (
+                        {products.map((productMap, i) => (
                             productMap.category === product.category && productMap.name !== product.name 
-                                && <Card product={productMap} />
+                                && <Card product={productMap} key={i}/>
                         ))}
                     </div>
                 </div>

@@ -18,8 +18,8 @@ function Home({ products }) {
         <div className="home">
             <div className="headerShadow"></div>
             <div className="products">
-                {products.map((productMap) => (
-                    <Card product={productMap} />
+                {products.map((productMap, i) => (
+                    <Card product={productMap} key={i}/>
                     // <div className="product" key={productMap._id} onClick={() => navigate(`/product/${productMap.name}`)}>
                     //     <img src={productMap.image[0]} alt="" />
                     //     <h2>{productMap.name.toUpperCase()}</h2>
