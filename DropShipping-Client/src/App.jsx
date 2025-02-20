@@ -89,6 +89,7 @@ function App() {
     return (
         <Router>
             <Navbar />
+            
             <Routes>
                 <Route path="/" element={<Home products={products}/>} />
                 <Route path="/product/:productName" element={<Product products={products} addToCart={addToCart}/>} />

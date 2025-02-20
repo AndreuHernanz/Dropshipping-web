@@ -1,159 +1,159 @@
 .dashboard-view{
     padding: 2rem;
-  }
-  .dash-products{
-    margin-top: 2em;
-  
-    .dash-container{
-      display: flex;
-      gap: 1rem;
-      margin:  0.2em auto;
-      justify-content: center;
+}
+.dash-products{
+  margin-top: 2em;
+}
+.dash-container{
+  display: flex;
+  gap: 1rem;
+  margin:  0.2em auto;
+  justify-content: center;
+  align-items: center;
+
+  .dash-product{
+    background-color: white;
+    max-width: 1200px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
+    text-align: left;
+    transition: all 0.3s ease;
+
+    .d-product-container{
+      display: grid;
+      grid-template-columns: auto 2fr 1fr 0.7fr auto;
       align-items: center;
-  
-      .dash-product{
-        background-color: white;
-        max-width: 1200px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
-        text-align: left;
-        transition: all 0.3s ease;
-  
-        .d-product-container{
-          display: grid;
-          grid-template-columns: auto 2fr 1fr 0.7fr auto;
-          align-items: center;
-  
-          .d-image{ width: 100px;
-            height: 100px;
-            padding: 5px; 
-            justify-content: center;  
-    
-            .d-image-image{
-              max-width: 100%;
-              max-height: 100%;
-              width: 100%;
-              height: 100%;
-            }
-          }
-    
-          
-          
-          .d-info{
-            margin: 0 0.5rem;
-          }
-          .d-name{
-            margin-top: 5px;
-            width: 140px;
-          }
-          .d-id{
-            color: gray;
-            font-size: 0.6em;
-          }
-          .d-properties{
-            margin: 0 0.5rem;
-          }
-          .d-about{
-            margin: 0 0.5rem;
-          }
-          .d-config{
-            margin: 0 0.5rem;
-          }
-  
+
+      .d-image{ width: 100px;
+        height: 100px;
+        padding: 5px; 
+        justify-content: center;  
+
+        .d-image-image{
+          max-width: 100%;
+          max-height: 100%;
+          width: 100%;
+          height: 100%;
         }
-  
-  
-        /* GALLERY */
-        .g-gallery{
-            display: flex;
+      }
 
-            .g-img{
-                width: 100px;
-                max-height: 100px;
-                border: 1px solid #e0e0e0;
-                margin: 0.5rem;
-                
-            }
-            .g-delete{
-                padding-right: 5px; 
-                cursor: pointer; 
-                user-select: none;
-                &:hover{
-                    color: red;
-                }
-            }
-            .add-cluadinary{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                
-                &:hover img{
-                    filter: brightness(0) invert(52%) sepia(87%) saturate(5719%) hue-rotate(339deg) brightness(104%) contrast(90%);
-                }
+      
+      
+      .d-info{
+        margin: 0 0.5rem;
+      }
+      .d-name{
+        margin-top: 5px;
+        width: 140px;
+      }
+      .d-id{
+        color: gray;
+        font-size: 0.6em;
+      }
+      .d-properties{
+        margin: 0 0.5rem;
+      }
+      .d-about{
+        margin: 0 0.5rem;
+      }
+      .d-config{
+        margin: 0 0.5rem;
+      }
 
-                img {
-                    width: 50px;
-                    height: 50px;
-                    filter: brightness(0.5);
+    }
 
-                    
-                }
-            }
-        }
-        .images-to-text{
-            width: 90%;
+
+    /* GALLERY */
+    .g-gallery{
+        display: flex;
+
+        .g-img{
+            width: 90px;
+            padding: 5px;
+            max-height: 100px;
+            border: 1px solid #e0e0e0;
             margin: 0.5rem;
+            
         }
-  
-      }
-      .d-upload{
-        
-        background-color: white;
-        border: white 1px solid;
-        padding: 5px;
-  
-        img{
-          width: 50px;
-          height: 50px;
-          margin: 0;
-          /*filter: invert(47%) sepia(16%) saturate(5820%) hue-rotate(200deg);*/
-          /*filter: brightness(0) invert(80%) sepia(72%) saturate(868%) hue-rotate(326deg);*/
+        .g-delete{
+            padding-right: 5px; 
+            cursor: pointer; 
+            user-select: none;
+            &:hover{
+                color: red;
+            }
         }
-        &:hover{
-          cursor: pointer;
-          border: blue 1px solid;
-        }
-  
-        &:active{
-          border: red 1px solid;
-          background-color: #cdd8ff;
-        }
-      }
-      .d-trash{
-        
-        background-color: white;
-        border: white 1px solid;
-        padding: 5px;
-        align-items: center;
-  
-        img{
-          width: 30px;
-          height: 30px;
-          filter: brightness(0.5);
-        }
-        &:hover{
-          cursor: pointer;
-          border: red 1px solid;
-            img {
-
+        .add-cluadinary{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            &:hover img{
                 filter: brightness(0) invert(52%) sepia(87%) saturate(5719%) hue-rotate(339deg) brightness(104%) contrast(90%);
             }
+
+            img {
+                width: 50px;
+                height: 50px;
+                filter: brightness(0.5);
+
+                
+            }
         }
-        &:active{
-          border: red 1px solid;
-          background-color: #cdd8ff;
-        }
-      }
     }
-  
-  
+    .images-to-text{
+        width: 90%;
+        margin: 0.5rem;
+    }
+
   }
+  .d-upload{
+    
+    background-color: white;
+    border: white 1px solid;
+    padding: 5px;
+
+    img{
+      width: 50px;
+      height: 50px;
+      margin: 0;
+      /*filter: invert(47%) sepia(16%) saturate(5820%) hue-rotate(200deg);*/
+      /*filter: brightness(0) invert(80%) sepia(72%) saturate(868%) hue-rotate(326deg);*/
+    }
+    &:hover{
+      cursor: pointer;
+      border: blue 1px solid;
+    }
+
+    &:active{
+      border: red 1px solid;
+      background-color: #cdd8ff;
+    }
+  }
+  .d-trash{
+    
+    background-color: white;
+    border: white 1px solid;
+    padding: 5px;
+    align-items: center;
+
+    img{
+      width: 30px;
+      height: 30px;
+      filter: brightness(0.5);
+    }
+    &:hover{
+      cursor: pointer;
+      border: red 1px solid;
+        img {
+
+            filter: brightness(0) invert(52%) sepia(87%) saturate(5719%) hue-rotate(339deg) brightness(104%) contrast(90%);
+        }
+    }
+    &:active{
+      border: red 1px solid;
+      background-color: #cdd8ff;
+    }
+  }
+}
+
+

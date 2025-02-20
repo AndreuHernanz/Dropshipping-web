@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import CloudinaryUpload from "./CloudinaryUpload";
 
 import Publish from "../../assets/publish_.svg";
 import Trash from "../../assets/trash_.svg";
 import ADown from "../../assets/arrow_down_.svg";
-import ADD from "../../assets/add_.svg";
 
 
 function Boards({ products, setProducts, product, index }) {
@@ -31,6 +31,20 @@ function Boards({ products, setProducts, product, index }) {
 
     const [imgHovered, setImgHovered] = useState(false);
     const [galleryActive, setGalleryActive] = useState(false);
+
+    const [urlRecieved, setUrlRecieved] = useState(false);
+    useEffect(() => {
+        if (urlRecieved) {
+            const newProducts = [...products];
+            newProducts[index].image.push(urlRecieved);
+            setProducts(newProducts);
+            setUploadedBool(false);
+            setImageBool(false);
+            setUrlRecieved(false);
+
+            document.getElementById("images-string").value = newProducts[index].image.join(", ");
+        }
+    }, [urlRecieved]);
 
     let colorUploaded = 'lightblue';
     let colorNotUploaded = 'orange';
@@ -78,7 +92,9 @@ function Boards({ products, setProducts, product, index }) {
         setProducts(newProducts);
         setUploadedBool(false);
         setImageBool(false);
-        console.log(newProducts[index].image);
+        //console.log(newProducts[index].image);
+
+        document.getElementById("images-string").value = newProducts[index].image.join(", ");
     }
 
     function gallery() {
@@ -96,14 +112,15 @@ function Boards({ products, setProducts, product, index }) {
                                 right: "anchor(right)", top: "anchor(top)" }}>X</div>
                         </>
                     ))}
-                    <div className="g-img add-cluadinary" onClick={() => {}}><img src={ADD} alt="" /></div>
+                    <CloudinaryUpload setUrlRecieved={setUrlRecieved}/>
             </div>
             <textarea className="images-to-text" 
+                id="images-string"
                 name="images-string" 
+                defaultValue={product.image.join(", ")}
                 key={`${product.name} images`} 
-                rows={1}
+                rows={`${product.image.length + 1}`}
                 style={{ color: imageBool ? colorUploaded : colorNotUploaded}}>
-                    {product.image.join(", ")}
             </textarea>
         </>
         );
