@@ -142,10 +142,10 @@ return (
                 </div>
 
                 <div className="d-info">
-                    <div style={{display: "flex", gap: "1em", alignItems: "center"}}>
-                        <p>Name</p>                            
+                    <div>
+                        <p className="iL" >Name</p>                            
                         <input                     
-                            className="d-name" 
+                            className="d-name iL" 
                             defaultValue={product.name} 
                             type="text"
                             style={{ color: nameBool ? colorUploaded : colorNotUploaded }}
@@ -157,7 +157,7 @@ return (
                                 setNameBool(false);
                             }}
                         />
-                        <div className="d-id">
+                        <div className="d-id iL">
                             id: {product._id}
                         </div>
                     </div>
@@ -181,7 +181,7 @@ return (
                         <input                     
                         defaultValue={product.size.join(', ')} 
                         type="text"
-                        style={{ maxWidth: "7em", color: sizeBool ? colorUploaded : colorNotUploaded }}
+                        style={{ color: sizeBool ? colorUploaded : colorNotUploaded }}
                         onChange={(e) => {
                             const newProducts = [...products];
                             newProducts[index].size = e.target.value.split(", ");
@@ -193,10 +193,10 @@ return (
                     </div>
                     <div className="d-color">
                         <p>Color → (x/ y/ z)</p>
-                        <textarea rows="2" cols="20"                     
+                        <textarea rows="2"                    
                         defaultValue={product.color.join('/ ')} 
                         type="text"
-                        style={{ textAlign: "left", color: colorBool ? colorUploaded : colorNotUploaded }}
+                        style={{ color: colorBool ? colorUploaded : colorNotUploaded }}
                         onChange={(e) => {
                             const newProducts = [...products];
                             newProducts[index].color = e.target.value.split("/ ");

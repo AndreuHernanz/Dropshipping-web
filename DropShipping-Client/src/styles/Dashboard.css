@@ -16,9 +16,9 @@
   /**/
   max-width: 1300px;
 
+
   .dash-product{
     background-color: white;
-    /*max-width: 1200px;*/
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
     text-align: left;
 
@@ -44,6 +44,7 @@
       
       .d-info{
         margin: 0 0.5rem;
+        display: inline-flexbox;
       }
       .d-name{
         margin-top: 5px;
@@ -53,8 +54,28 @@
         color: gray;
         font-size: 0.6em;
       }
+      .d-description{
+        width: 100%;
+        max-width: 600px
+      }
       .d-properties{
         margin: 0 0.5rem;
+        white-space: nowrap;
+        overflow: hidden;
+        min-width: 90px;
+
+        .d-size{
+          input {
+            width: 7em;
+            max-width: 90%;
+          }
+        }
+        .d-color{
+          textarea {
+            text-align: left;
+            width: 90%;
+          }
+        }
       }
       .d-about{
         margin: 0 0.5rem;
@@ -158,6 +179,25 @@
       background-color: #cdd8ff;
     }
   }
+}
+
+.iL{
+  display: inline;
+  margin-right: 0.5rem;
+}
+
+
+@media (max-width: 768px) {
+  .dash-container{
+    /*max-width: 1300px;*/
+    flex-wrap: wrap;
+    margin: 1rem 0;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #000000;
+  
+    .dash-product{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
 }
 
 

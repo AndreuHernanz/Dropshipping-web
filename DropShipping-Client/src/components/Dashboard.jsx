@@ -95,30 +95,28 @@ function Dashboard({products, setProducts}) {
                     <div className="d-image" >
                         <img className="d-image-image" />
                     </div>
-    
+
                     <div className="d-info">
-                        <div style={{display: "flex", gap: "1em", alignItems: "center"}}>
-                            <p>Name</p>                            
-                            <input className="d-name" />
-                            <div className="d-id"> id:</div>
+                        <div>
+                            <p className="iL">Name</p>                            
+                            <input className="d-name iL" />
+                            <div style={{whiteSpace: "nowrap"}} className="d-id iL"> id: 376537473475345</div>
                         </div>
                         <p>Description</p>
-                        <textarea rows="3" cols="50"
+                        <textarea rows="3"
+                            /*cols="50"*/
                             className="d-description"
-                            style={{ maxWidth: "600px" }}
                         />
                     </div>
                     <div className="d-properties">
                         <div className="d-size">
                             <p>Size → (a, b, c)</p>
                             <input                     
-                            style={{ maxWidth: "7em" }}
                             />
                         </div>
                         <div className="d-color">
                             <p>Color → (x/ y/ z)</p>
-                            <textarea rows="2" cols="20"          
-                            style={{ textAlign: "left" }}
+                            <textarea rows="2" /*cols="20"  */ 
                             />
                         </div>
                     </div>
@@ -150,6 +148,7 @@ function Dashboard({products, setProducts}) {
                         />
                     </div>
                 </div>
+                
             </div>
             <button className="d-upload" >
                 <img src={Publish} alt="Publish" />
@@ -174,12 +173,12 @@ function Dashboard({products, setProducts}) {
                         {<img className="d-image-image" 
         src={imgHovered || galleryActive || !newProduct.image ? ADown : newProduct.image[0]} alt=""/>}
                     </div>
-    
+
                     <div className="d-info">
-                        <div style={{display: "flex", gap: "1em", alignItems: "center"}}>
-                            <p>Name</p>                            
+                        <div>
+                            <p className="iL">Name</p>                            
                             <input                     
-                                className="d-name" 
+                                className="d-name iL" 
                                 type="text"
                                 style={{ color: "magenta" }}
                                 onChange={(e) => {
@@ -205,7 +204,7 @@ function Dashboard({products, setProducts}) {
                             <p>Size → (a, b, c)</p>
                             <input                     
                             type="text"
-                            style={{ maxWidth: "7em", color: "magenta" }}
+                            style={{ color: "magenta" }}
                             onChange={(e) => {
                                 const tempProduct = {...newProduct};
                                 tempProduct.size = e.target.value.split(", ");
@@ -215,9 +214,9 @@ function Dashboard({products, setProducts}) {
                         </div>
                         <div className="d-color">
                             <p>Color → (x/ y/ z)</p>
-                            <textarea rows="2" cols="20"                     
+                            <textarea rows="2"                    
                             type="text"
-                            style={{ textAlign: "left", color: "magenta" }}
+                            style={{ color: "magenta" }}
                             onChange={(e) => {
                                 const tempProduct = {...newProduct};
                                 tempProduct.color = e.target.value.split("/ ");
