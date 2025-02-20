@@ -77,7 +77,7 @@ export default function Checkout({cart, CheckoutForm}) {
              </div>
              <h1>Checkout</h1>
                 <button onClick={handleCheckout}>Checkout</button>
-                {CheckoutForm()}
+                {/*CheckoutForm()*/}
             <div className="headerShadow"></div>
         </div>
         </>

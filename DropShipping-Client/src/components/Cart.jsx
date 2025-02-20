@@ -49,6 +49,10 @@ function Cart({cart, setCart}) {
 
     let navigate = useNavigate()
 
+    useEffect(() => {
+                window.scrollTo(0, 0);
+            }, [])
+
     return (
 <>
 <div className="headerShadow"></div>

@@ -17,10 +17,7 @@ app.use(express.json());
 // Connect to MongoDB
 async function connectToDB() {
   try {
-    await mongoose.connect(process.env.MONGO, {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-    });
+    await mongoose.connect(process.env.MONGO);
     console.log("Connected to the DB :white_check_mark:");
   } catch (error) {
     console.error("ERROR: Your DB is not running, start it up :radioactive_sign:");

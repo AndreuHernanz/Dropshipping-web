@@ -35,7 +35,9 @@ class ProductsController {
 	async addProduct (req, res){
 		try{
 			const { product } = req.body
-			const new_product = {
+
+			// CODE FROM POSTMAN
+			/*const new_product = {
 				name: product.name,
 				price: parseFloat(product.price),
 				image: product.image.split(", "), //split the string into an array
@@ -45,7 +47,20 @@ class ProductsController {
 				description: product.description,
 				category: product.category,
 				price_id: product.price_id
+			}*/
+			console.log(product)
+			const new_product = {
+				name: product.name,
+				price: parseFloat(product.price),
+				image: product.image, //split the string into an array
+				stock: parseInt(product.stock),
+				size: product.size,
+				color: product.color,
+				description: product.description,
+				category: product.category,
+				price_id: product.price_id
 			}
+			console.log(new_product)
 			const existingProduct = await ProductsDB.findOne({name: new_product.name})
 			if (existingProduct) {
 				return res.send({ ok: true, message: `Product ${new_product.name} already exists`})

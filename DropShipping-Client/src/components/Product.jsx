@@ -30,26 +30,26 @@ function Product({ products, addToCart }) {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        if (product?.color[0] !== '') {
-            setSelectedColor(product?.color[0]);
-        }
+        // if (product?.color[0] !== '') {
+        //     setSelectedColor(product?.color[0]);
+        // }
 
         let navCart = document.getElementById("nav-cart").getBoundingClientRect();
         setCornerPosX(navCart.x);
         setCornerPosY(navCart.y);
         
-        if (product?.size[0] !== '') {
-            setSelectedSize("m");
-        }
-        if (product?.color[0] !== '') {
-            setSelectedColor(product.color[0]);
-        }
+        
     }, [])
 
     useEffect(() => {
         setTimeout(() => setInit(), 100);
         
-        
+        if (product?.size[0] !== '') {
+            setSelectedSize("m");
+        }
+        if (product?.color[0] !== '') {
+            setSelectedColor(product?.color[0]);
+        }
     },[products])
 
     

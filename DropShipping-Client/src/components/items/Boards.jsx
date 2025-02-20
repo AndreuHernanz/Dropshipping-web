@@ -210,6 +210,7 @@ return (
                 <div className="d-about">
                     <div className="d-price">
                         <p>Price (xx.xx)</p>
+                        <span style={{display: "flex", alignItems: "center"}}>
                         <input                     
                         defaultValue={product.price} 
                         type="number"
@@ -222,6 +223,7 @@ return (
                             setPriceBool(false);
                         }}
                         />€
+                        </span>
                     </div>
                     <div className="d-stock">
                         <p>Stock</p>

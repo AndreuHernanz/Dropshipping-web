@@ -1,28 +1,47 @@
 import React from "react";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Board from "./items/Boards";
 import "../styles/Dashboard.css";
 
 import Publish from "../assets/publish_.svg";
+import ADown from "../assets/arrow_down_.svg";
+import Trash from "../assets/trash_.svg";
 
 import CloudinaryUpload from "./items/CloudinaryUpload";
 
+
 function Dashboard({products, setProducts}) {
 
-    const [newProduct, setNewProduct] = useState({});
+    const [newProduct, setNewProduct] = useState({
+        name: null, price: null, image: null, stock: null, size: null, 
+        color: null, description: null, category: null, price_id: "price_1QuZX2EgDHE5Jv012x27Kqa1"});
+    const [imgHovered, setImgHovered] = useState(false);
+    const [galleryActive, setGalleryActive] = useState(false);
 
-    function updateProduct(product) {
-        axios.post("http://localhost:4040/product/update", {product})
+    const [urlRecieved, setUrlRecieved] = useState(false);
+        useEffect(() => {
+            if (urlRecieved) {
+                const tempProduct = {...newProduct};
+                //console.log("URL recieved:", tempProduct);
+                tempProduct.image = tempProduct.image ? tempProduct.image : [];
+                tempProduct.image.push(urlRecieved);
+                setNewProduct(tempProduct);
+    
+                document.getElementById("images-string-add").value = tempProduct?.image.join(", ");
+            }
+        }, [urlRecieved]);
+
+    function addNewProduct() {
+        let product = newProduct;
+        axios.post("http://localhost:4040/product/add", {product})
             .then(response => {
-                console.log("Product updated successfully:", response.data);
+                console.log("Product added successfully:", response.data);
+                setProducts([...products, newProduct]);
             })
             .catch(error => {
                 console.error("There was an error updating the product!", error);
             });
-
-        console.log(product);
-           
     }
 
     function gallery() {
@@ -30,11 +49,11 @@ function Dashboard({products, setProducts}) {
         <>
             <div className="g-gallery">
                     {/* everyrthing here */}
-                    {product.image.map((img, index) => (
+                    {newProduct.image && newProduct.image.length > 0 && newProduct.image.map((img, index) => (
                         <>
                             <img className="g-img" src={img} alt="" key={index} 
                                 style={{anchorName: `--img${index}`, 
-                                backgroundColor: imageBool ? "transparent" : "rgba(255, 166, 0, 0.275)"}}/>
+                                backgroundColor: "rgba(255, 0, 204, 0.28)"}}/>
                             <div className="g-delete" onClick={() => deleteImage(index)}
                                 style={{position:"absolute", positionAnchor: `--img${index}`, 
                                 right: "anchor(right)", top: "anchor(top)" }}>X</div>
@@ -43,29 +62,117 @@ function Dashboard({products, setProducts}) {
                     <CloudinaryUpload setUrlRecieved={setUrlRecieved}/>
             </div>
             <textarea className="images-to-text" 
-                id="images-string"
+                id="images-string-add"
                 name="images-string" 
-                defaultValue={product.image.join(", ")}
-                key={`${product.name} images`} 
-                rows={`${product.image.length + 1}`}
-                style={{ color: imageBool ? colorUploaded : colorNotUploaded}}>
+                defaultValue={newProduct?.image?.join(", ")}
+                key={`${newProduct.name} images`} 
+                rows={newProduct.image ? `${newProduct.image.length + 1}` : "1"}
+                style={{ color: "magenta"}}>
             </textarea>
         </>
         );
     }
 
+    useEffect(() => {
+            window.scrollTo(0, 0);
+        }, [])
+
     return (
 <>
 <div className="headerShadow"></div>
 <div className="dashboard-view">
+
+
+
+
+
+    <div className="dash-container">
+            <button className="d-trash">
+                <img src={Trash} alt="Delete" />
+            </button>
+            <div className="dash-product">
+                <div className="d-product-container">
+                    <div className="d-image" >
+                        <img className="d-image-image" />
+                    </div>
+    
+                    <div className="d-info">
+                        <div style={{display: "flex", gap: "1em", alignItems: "center"}}>
+                            <p>Name</p>                            
+                            <input className="d-name" />
+                            <div className="d-id"> id:</div>
+                        </div>
+                        <p>Description</p>
+                        <textarea rows="3" cols="50"
+                            className="d-description"
+                            style={{ maxWidth: "600px" }}
+                        />
+                    </div>
+                    <div className="d-properties">
+                        <div className="d-size">
+                            <p>Size → (a, b, c)</p>
+                            <input                     
+                            style={{ maxWidth: "7em" }}
+                            />
+                        </div>
+                        <div className="d-color">
+                            <p>Color → (x/ y/ z)</p>
+                            <textarea rows="2" cols="20"          
+                            style={{ textAlign: "left" }}
+                            />
+                        </div>
+                    </div>
+                    <div className="d-about">
+                        <div className="d-price">
+                            <p>Price (xx.xx)</p>
+                            <span style={{display: "flex", alignItems: "center"}}>
+
+                            <input           
+                            style={{ maxWidth: "7em", textAlign: "right"}}
+                            /><span>€</span>
+                            </span>
+                        </div>
+                        <div className="d-stock">
+                            <p>Stock</p>
+                            <input                  
+                            style={{ maxWidth: "4em", textAlign: "center" }}
+                            />
+                        </div>
+                    </div>
+                    <div className="d-config">
+                        <p>Category</p>
+                        <input 
+                            style={{ maxWidth: "8em", marginRight: "1em" }}
+                            
+                        />
+                        <p>Price_ID</p>
+                        <input style={{ maxWidth: "12em", marginRight: "1em" }}
+                        />
+                    </div>
+                </div>
+            </div>
+            <button className="d-upload" >
+                <img src={Publish} alt="Publish" />
+            </button>
+        </div>
+
+
+
+
+
+
+
+
     <h1>Dashboard</h1>
     <h2>Add product</h2>
     <div className="dash-container">
             <div className="dash-product">
                 <div className="d-product-container">
-                    <div className="d-image">
-                        {newProduct?.image && <img className="d-image-image" 
-                            src={newProduct?.image[0]} alt=""/>}
+                    <div className="d-image" onClick={() => setGalleryActive(!galleryActive)}
+                    onMouseEnter={() => setImgHovered(true)}
+                    onMouseLeave={() => setImgHovered(false)}>
+                        {<img className="d-image-image" 
+        src={imgHovered || galleryActive || !newProduct.image ? ADown : newProduct.image[0]} alt=""/>}
                     </div>
     
                     <div className="d-info">
@@ -122,6 +229,7 @@ function Dashboard({products, setProducts}) {
                     <div className="d-about">
                         <div className="d-price">
                             <p>Price (xx.xx)</p>
+                            <span style={{display: "flex", alignItems: "center"}}>
                             <input                     
                             type="number"
                             style={{ maxWidth: "7em", textAlign: "right", color: "magenta" }}
@@ -131,6 +239,7 @@ function Dashboard({products, setProducts}) {
                                 setNewProduct(tempProduct);
                             }}
                             />€
+                            </span>
                         </div>
                         <div className="d-stock">
                             <p>Stock</p>
@@ -166,9 +275,9 @@ function Dashboard({products, setProducts}) {
                         />
                     </div>
                 </div>
-                {/*galleryActive && gallery()*/}
+                {galleryActive && gallery()}
             </div>
-            <button className="d-upload" onClick={() => updateProduct()}>
+            <button className="d-upload" onClick={() => addNewProduct()}>
                 <img src={Publish} alt="Publish" 
                 style={{filter: "brightness(0) invert(80%) sepia(72%) saturate(868%) hue-rotate(326deg)"
                 }} />

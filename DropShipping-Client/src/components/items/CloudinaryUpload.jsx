@@ -6,7 +6,7 @@ const CloudinaryUpload = ({setUrlRecieved}) => {
   const [isCloudinaryReady, setIsCloudinaryReady] = useState(false); // New state
 
   const [cloudinaryResponse, setCloudinaryResponse] = useState(null);
-  console.log(cloudinaryResponse);
+  //console.log(cloudinaryResponse);
 
   useEffect(() => {
     // Check if Cloudinary is already loaded. This is important for preventing multiple script injections.
