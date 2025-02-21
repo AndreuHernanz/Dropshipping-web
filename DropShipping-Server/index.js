@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require('path');
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 require("dotenv").config();
@@ -30,6 +31,13 @@ app.use("/category", require("./routes/categoryRoutes.js"));
 app.use("/product", require("./routes/productsRoutes.js"));
 app.use("/user", require("./routes/usersRoutes.js"));
 //app.use("/create-checkout-session", require("./routes/checkoutRoutes.js"));
+
+app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, '../DropShipping-Client/dist')));
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, '../DropShipping-Client/dist', 'index.html'));
+});
 
 // Stripe Checkout Route
  app.post("/create-checkout-session", async (req, res) => {
