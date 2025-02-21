@@ -1,4 +1,5 @@
 import React from "react";
+import { URL } from '../../config'
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Board from "./items/Boards";
@@ -36,7 +37,7 @@ function Dashboard({products, setProducts}) {
 
     function addNewProduct() {
         let product = newProduct;
-        axios.post("http://localhost:4040/product/add", {product})
+        axios.post(`${URL}/product/add`, {product})
             .then(response => {
                 console.log("Product added successfully:", response.data);
                 if (response.data.ok) {

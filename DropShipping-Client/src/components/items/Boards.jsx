@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { URL } from '../../../config'
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
@@ -51,7 +52,7 @@ function Boards({ products, setProducts, product, index }) {
     let colorNotUploaded = 'orangered';
 
     function updateProduct() {
-        axios.post("http://localhost:4040/product/update", {product})
+        axios.post(`${URL}/product/update`, {product})
             .then(response => {
                 console.log("Product updated:", product);
                 console.log("Product updated successfully:", response.data);
@@ -75,7 +76,7 @@ function Boards({ products, setProducts, product, index }) {
 
     function deleteProduct() {
         if (window.confirm(`Are you sure you want to delete this product: ${product.name.toUpperCase()}?`)) {
-            axios.post("http://localhost:4040/product/delete", { product })
+            axios.post(`${URL}/product/delete`, { product })
             .then(response => {
                 console.log("Product deleted successfully:", response.data);
             })

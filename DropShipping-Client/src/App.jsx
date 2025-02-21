@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { URL } from '../config'
 import axios from "axios";
 import { BrowserRouter as Router, Route, Routes } from "react-router";
 import Home from "./components/Home.jsx";
@@ -52,7 +53,7 @@ function App() {
     const [cart, setCart] = useState([])
 
     useEffect(() => {
-        axios.get("http://localhost:4040/product/all")
+        axios.get(`${URL}/product/all`)
             .then((res) => {
               res.data.message.sort((a, b) => a.order - b.order);
                 setProducts(res.data.message);

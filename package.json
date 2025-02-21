@@ -1,0 +1,25 @@
+{
+  "name": "DropShipping-Server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd ./server && node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "*",
+    "cors": "*",
+    "dotenv": "*",
+    "express": "*",
+    "jsonwebtoken": "*",
+    "mongoose": "*",
+    "nodemailer": "*",
+    "stripe": "^17.6.0"
+  },
+  "engines": {
+    "node": "22.12.0"
+  }
+}
