@@ -17,14 +17,10 @@ function Home({ products }) {
     return (
         <div className="home">
             <div className="headerShadow"></div>
+            <div className="background"/>
             <div className="products">
                 {products.map((productMap, i) => (
                     <Card product={productMap} key={i}/>
-                    // <div className="product" key={productMap._id} onClick={() => navigate(`/product/${productMap.name}`)}>
-                    //     <img src={productMap.image[0]} alt="" />
-                    //     <h2>{productMap.name.toUpperCase()}</h2>
-                    //     <p>{productMap.price}€</p>
-                    // </div>
                 ))}
             </div>
             <img src="../assets/MShakeTurnAround.png" alt="" />

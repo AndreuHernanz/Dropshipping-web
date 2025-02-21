@@ -2,10 +2,17 @@
   margin: 0;
   padding: 0;
 }
+@font-face {
+  font-family: 'Kanit';
+  src: url('./assets/kanit-regular.ttf') format('truetype'); /* Adjust the path */
+  src: url('./assets/kanit-extrabold.ttf') format('truetype'); /*kanit-extrabold*/
+  font-weight: normal;
+  font-style: normal;
+}
 #root {
   text-align: center;
 
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: /*'Kanit',*/ Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -61,12 +68,10 @@ input, textarea {
 textarea::-webkit-scrollbar {
   width: 12px; /* Ancho del scrollbar */
 }
-
 textarea::-webkit-scrollbar-thumb {
   background-color:lightgray; /* Color del "botón" del scroll */
   border-radius: 10px; /* Bordes redondeados */
 }
-
 textarea::-webkit-scrollbar-track {
   background-color: #f3f3f3; /* Fondo del track del scroll */
 }
@@ -124,12 +129,22 @@ textarea::-webkit-scrollbar-track {
 }
 
 /* HOME */
+.background{
+  background-image: url('./assets/Mountains.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  width: 100vw;
+  height: 50vh;
+}
+
 .products{
   
   padding: 2rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1rem;
+  box-shadow: 0 -10px 50px #e5e5e5;
 }
 
 .product{
@@ -217,7 +232,7 @@ textarea::-webkit-scrollbar-track {
   }
   .size-active{
     color: red;
-    font-weight: 900;
+    font-weight:900; /*bold extrabold*/
   }
   .size-unactive{
     

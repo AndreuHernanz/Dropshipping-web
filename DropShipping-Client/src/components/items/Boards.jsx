@@ -66,6 +66,7 @@ function Boards({ products, setProducts, product, index }) {
                 setCategoryBool(true);
                 setOrderBool(true);
                 setPriceIdBool(true);
+                sortProducts();
             })
             .catch(error => {
                 console.error("There was an error updating the product!", error);
@@ -98,6 +99,12 @@ function Boards({ products, setProducts, product, index }) {
         //console.log(newProducts[index].image);
 
         document.getElementById("images-string").value = newProducts[index].image.join(", ");
+    }
+
+    function sortProducts() {
+        let newProducts = [...products];
+        newProducts.sort((a, b) => a.order - b.order);
+        setProducts(newProducts);
     }
 
     function gallery() {
@@ -267,7 +274,7 @@ return (
                         defaultValue={product?.order} 
                         className="iL"
                         type="number"
-                        style={{ color: orderBool ? colorUploaded : colorNotUploaded, 
+                        style={{ color: orderBool ? "green" : colorNotUploaded, 
                             borderColor: orderBool ? "" : colorNotUploaded }}
                         onChange={(e) => {
                             const newProducts = [...products];

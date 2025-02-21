@@ -54,6 +54,7 @@ function App() {
     useEffect(() => {
         axios.get("http://localhost:4040/product/all")
             .then((res) => {
+              res.data.message.sort((a, b) => a.order - b.order);
                 setProducts(res.data.message);
                 console.log(res.data);
             })

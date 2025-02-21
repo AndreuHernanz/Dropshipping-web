@@ -46,7 +46,7 @@ function Product({ products, addToCart }) {
         
         if (product?.size[0] !== '') {
             if (product?.size.includes("m")) setSelectedSize("m");
-            else setSelectedSize(product.size[0]);
+            else setSelectedSize(product?.size[0]);
         }
         if (product?.color[0] !== '') {
             setSelectedColor(product?.color[0]);

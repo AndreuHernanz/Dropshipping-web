@@ -102,7 +102,7 @@ function Dashboard({products, setProducts}) {
     <h1>Dashboard</h1>
     <h2>Add product</h2>
     <div className="dash-container">
-            <div className="dash-product">
+            <div className="dash-product" style={{backgroundColor: "rgb(241, 215, 239)"}}>
                 <div className="d-product-container">
                     <div className="d-image" onClick={() => setGalleryActive(!galleryActive)}
                     onMouseEnter={() => setImgHovered(true)}
