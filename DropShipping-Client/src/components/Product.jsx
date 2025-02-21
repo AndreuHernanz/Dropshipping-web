@@ -141,7 +141,7 @@ function Product({ products, addToCart }) {
             {products.some(p => p.category === product.category && p.name !== product.name) && (
                 <div className="category-related">
                     <h2 className="subdivision">Related Products</h2>
-                    <div className="products">
+                    <div className="products-recommended">
                         {products.map((productMap, i) => (
                             productMap.category === product.category && productMap.name !== product.name 
                                 && <Card product={productMap} key={i}/>
@@ -152,10 +152,10 @@ function Product({ products, addToCart }) {
 
             <div className="more-products">
                 <h2 className="subdivision">More Products</h2>
-                <div className="products">
-                    {products.map((productMap) => (
+                <div className="products-recommended">
+                    {products.map((productMap, i) => (
                         productMap.name !== product.name 
-                        && <Card product={productMap} />
+                        && <Card product={productMap} key={`moreProducts${i}`} />
                     ))}
                 </div>
             </div>
