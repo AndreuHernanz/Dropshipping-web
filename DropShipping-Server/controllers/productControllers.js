@@ -58,6 +58,7 @@ class ProductsController {
 				color: product.color,
 				description: product.description,
 				category: product.category,
+				order: product.order,
 				price_id: product.price_id
 			}
 			console.log(new_product)
@@ -95,11 +96,12 @@ class ProductsController {
 				color: product.color,//.split("/ "),
 				description: product.description,
 				category: product.category,
+				order: product.order,
 				price_id: product.price_id
 			}
 			console.log(updated_product)
-			const product_updated = await ProductsDB.updateOne({name:product.name}, updated_product)
-			return res.send({ ok: true, message: updated_product})
+			const product_updated = await ProductsDB.updateOne({_id: product._id}, updated_product)
+			return res.send({ ok: true, message: product_updated})
 		}
 		catch( error ){
 			res.send({ok:false,message:error})

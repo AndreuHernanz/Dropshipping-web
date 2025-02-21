@@ -24,10 +24,10 @@
 
     .d-product-container{
       display: grid;
-      grid-template-columns: auto 2fr 1fr 0.7fr auto;
+      grid-template-columns: auto 2fr 1fr 0.7fr 1fr;
       align-items: center;
 
-      .d-image{ width: 100px;
+      .d-image{ width: auto;
         height: 100px;
         padding: 5px; 
         justify-content: center;  
@@ -53,6 +53,7 @@
       .d-id{
         color: gray;
         font-size: 0.6em;
+        white-space: nowrap;
       }
       .d-description{
         width: 100%;
@@ -79,9 +80,52 @@
       }
       .d-about{
         margin: 0 0.5rem;
+        white-space: nowrap;
+        overflow: hidden;
+        min-width: 50px;
+
+        .d-price{
+          span input {
+            width: 7em;
+            max-width: 75%;
+            text-align: right;
+          }
+        }
+        .d-stock{
+          display: flex;
+          justify-content: left;
+          gap: 0.5rem;
+          overflow: hidden;
+          input {
+            width: 7em;
+            max-width: 50%;
+            text-align: center;
+          }
+        }
+        .d-order{
+          input {
+            width: 7em;
+            max-width: 50%;
+            text-align: center;
+          }
+        }
       }
       .d-config{
         margin: 0 0.5rem;
+        white-space: nowrap;
+        overflow: hidden;
+        min-width: 100px;
+
+        .category_input {
+          width: 8em;
+          max-width: 90%;
+          margin-right: 1em;
+        }
+        .price_id_input{
+          width: 11em;
+          max-width: 90%;
+          margin-right: 1em;
+        }
       }
 
     }
@@ -194,10 +238,22 @@
     margin: 1rem 0;
     padding-bottom: 1rem;
     border-bottom: 1px solid #000000;
-  
+    gap: 0;
+
     .dash-product{
+      z-index: 3;
+      .d-product-container{
         display: grid;
         grid-template-columns: 1fr 1fr;
+      }
+    }
+    .d-upload{
+    margin-left: auto;
+    margin-right: 5%;
+    
+  }
+  }
+  
 }
 
 

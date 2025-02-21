@@ -27,6 +27,7 @@ function Boards({ products, setProducts, product, index }) {
     const [priceBool, setPriceBool] = useState(1);
     const [stockBool, setStockBool] = useState(1);
     const [categoryBool, setCategoryBool] = useState(1);
+    const [orderBool, setOrderBool] = useState(1);
     const [priceIdBool, setPriceIdBool] = useState(1);
 
     const [imgHovered, setImgHovered] = useState(false);
@@ -46,12 +47,13 @@ function Boards({ products, setProducts, product, index }) {
         }
     }, [urlRecieved]);
 
-    let colorUploaded = 'lightblue';
-    let colorNotUploaded = 'orange';
+    let colorUploaded = 'cornflowerblue';
+    let colorNotUploaded = 'orangered';
 
     function updateProduct() {
         axios.post("http://localhost:4040/product/update", {product})
             .then(response => {
+                console.log("Product updated:", product);
                 console.log("Product updated successfully:", response.data);
                 setUploadedBool(true);
                 setImageBool(true);
@@ -62,6 +64,7 @@ function Boards({ products, setProducts, product, index }) {
                 setPriceBool(true);
                 setStockBool(true);
                 setCategoryBool(true);
+                setOrderBool(true);
                 setPriceIdBool(true);
             })
             .catch(error => {
@@ -120,7 +123,18 @@ function Boards({ products, setProducts, product, index }) {
                 defaultValue={product.image.join(", ")}
                 key={`${product.name} images`} 
                 rows={`${product.image.length + 1}`}
-                style={{ color: imageBool ? colorUploaded : colorNotUploaded}}>
+                style={{ color: imageBool ? colorUploaded : colorNotUploaded, 
+                    borderColor: imageBool ? "" : colorNotUploaded }}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                        e.preventDefault();
+                        const newProducts = [...products];
+                        newProducts[index].image = e.target.value.split(", ");
+                        setProducts(newProducts);
+                        setUploadedBool(false);
+                        setImageBool(false);
+                    }
+                }}>
             </textarea>
         </>
         );
@@ -148,7 +162,8 @@ return (
                             className="d-name iL" 
                             defaultValue={product.name} 
                             type="text"
-                            style={{ color: nameBool ? colorUploaded : colorNotUploaded }}
+                            style={{ color: nameBool ? colorUploaded : colorNotUploaded, 
+                                borderColor: nameBool ? "" : colorNotUploaded }}
                             onChange={(e) => {
                                 const newProducts = [...products];
                                 newProducts[index].name = e.target.value;
@@ -165,7 +180,8 @@ return (
                     <textarea rows="3" cols="50"
                         className="d-description"
                         defaultValue={product.description} 
-                        style={{ maxWidth: "600px", color: descriptionBool ? colorUploaded : colorNotUploaded }}
+                        style={{ maxWidth: "600px", color: descriptionBool ? colorUploaded : colorNotUploaded, 
+                            borderColor: descriptionBool ? "" : colorNotUploaded }}
                         onChange={(e) => {
                                 const newProducts = [...products];
                                 newProducts[index].description = e.target.value;
@@ -179,9 +195,10 @@ return (
                     <div className="d-size">
                         <p>Size → (a, b, c)</p>
                         <input                     
-                        defaultValue={product.size.join(', ')} 
+                        defaultValue={product?.size?.join(', ')} 
                         type="text"
-                        style={{ color: sizeBool ? colorUploaded : colorNotUploaded }}
+                        style={{ color: sizeBool ? colorUploaded : colorNotUploaded, 
+                            borderColor: sizeBool ? "" : colorNotUploaded }}
                         onChange={(e) => {
                             const newProducts = [...products];
                             newProducts[index].size = e.target.value.split(", ");
@@ -194,9 +211,10 @@ return (
                     <div className="d-color">
                         <p>Color → (x/ y/ z)</p>
                         <textarea rows="2"                    
-                        defaultValue={product.color.join('/ ')} 
+                        defaultValue={product.color?.join('/ ')} 
                         type="text"
-                        style={{ color: colorBool ? colorUploaded : colorNotUploaded }}
+                        style={{ color: colorBool ? colorUploaded : colorNotUploaded, 
+                            borderColor: colorBool ? "" : colorNotUploaded }}
                         onChange={(e) => {
                             const newProducts = [...products];
                             newProducts[index].color = e.target.value.split("/ ");
@@ -214,7 +232,8 @@ return (
                         <input                     
                         defaultValue={product.price} 
                         type="number"
-                        style={{ maxWidth: "7em", textAlign: "right", color: priceBool ? colorUploaded : colorNotUploaded }}
+                        style={{ color: priceBool ? colorUploaded : colorNotUploaded, 
+                            borderColor: priceBool ? "" : colorNotUploaded }}
                         onChange={(e) => {
                             const newProducts = [...products];
                             newProducts[index].price = e.target.value;
@@ -226,11 +245,13 @@ return (
                         </span>
                     </div>
                     <div className="d-stock">
-                        <p>Stock</p>
+                        <p className="">Stock</p>
                         <input                     
                         defaultValue={product.stock} 
+                        className=""
                         type="number"
-                        style={{ maxWidth: "4em", textAlign: "center", color: stockBool ? colorUploaded : colorNotUploaded }}
+                        style={{ color: stockBool ? colorUploaded : colorNotUploaded, 
+                            borderColor: stockBool ? "" : colorNotUploaded }}
                         onChange={(e) => {
                             const newProducts = [...products];
                             newProducts[index].stock = e.target.value;
@@ -240,12 +261,31 @@ return (
                         }}
                         />
                     </div>
+                    <div className="d-order">
+                        <p className="iL">Order</p>
+                        <input                     
+                        defaultValue={product?.order} 
+                        className="iL"
+                        type="number"
+                        style={{ color: orderBool ? colorUploaded : colorNotUploaded, 
+                            borderColor: orderBool ? "" : colorNotUploaded }}
+                        onChange={(e) => {
+                            const newProducts = [...products];
+                            newProducts[index].order = e.target.value;
+                            setProducts(newProducts);
+                            setUploadedBool(false);
+                            setOrderBool(false);
+                        }}
+                        />
+                    </div>
                 </div>
                 <div className="d-config">
                     <p>Category</p>
                     <input 
+                        className="category_input"
                         defaultValue={product.category} 
-                        style={{ maxWidth: "8em", marginRight: "1em", color: categoryBool ? colorUploaded : colorNotUploaded }}
+                        style={{ color: categoryBool ? colorUploaded : colorNotUploaded, 
+                            borderColor: categoryBool ? "" : colorNotUploaded }}
                         onChange={(e) => {
                             const newProducts = [...products];
                             newProducts[index].category = e.target.value;
@@ -256,8 +296,10 @@ return (
                     />
                     <p>Price_ID</p>
                     <input 
+                        className="price_id_input"
                         defaultValue={product.price_id} 
-                        style={{ maxWidth: "12em", marginRight: "1em", color: priceIdBool ? colorUploaded : colorNotUploaded }}
+                        style={{ color: priceIdBool ? colorUploaded : colorNotUploaded, 
+                            borderColor: priceIdBool ? "" : colorNotUploaded }}
                         onChange={(e) => {
                             const newProducts = [...products];
                             newProducts[index].price_id = e.target.value;

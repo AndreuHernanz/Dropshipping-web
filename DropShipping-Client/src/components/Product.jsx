@@ -45,7 +45,8 @@ function Product({ products, addToCart }) {
         setTimeout(() => setInit(), 100);
         
         if (product?.size[0] !== '') {
-            setSelectedSize("m");
+            if (product?.size.includes("m")) setSelectedSize("m");
+            else setSelectedSize(product.size[0]);
         }
         if (product?.color[0] !== '') {
             setSelectedColor(product?.color[0]);
@@ -153,7 +154,8 @@ function Product({ products, addToCart }) {
                 <h2 className="subdivision">More Products</h2>
                 <div className="products">
                     {products.map((productMap) => (
-                        <Card product={productMap} />
+                        productMap.name !== product.name 
+                        && <Card product={productMap} />
                     ))}
                 </div>
             </div>

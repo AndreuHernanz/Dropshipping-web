@@ -38,6 +38,39 @@ a {
   }
 }
 
+input, textarea {
+  max-width: 95%;
+  min-width: 80px;
+  color:cornflowerblue;
+  background-color: #f3f3f3; 
+  border: 1px solid #ccc; 
+  padding: 1px 2px;
+  outline: none; 
+  font-size: 14px;
+  transition: border-color 0.2s ease-in-out;
+
+
+
+  &:focus {
+    border-color: #aaa; /* Cambia ligeramente el color al hacer focus */
+  }
+
+ 
+
+}
+textarea::-webkit-scrollbar {
+  width: 12px; /* Ancho del scrollbar */
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background-color:lightgray; /* Color del "botón" del scroll */
+  border-radius: 10px; /* Bordes redondeados */
+}
+
+textarea::-webkit-scrollbar-track {
+  background-color: #f3f3f3; /* Fondo del track del scroll */
+}
+
 /* HEADER */
 .header {
   display: grid;
@@ -63,11 +96,18 @@ a {
     cursor: pointer;
     max-width: 15vw;
   }
-  #page-name{
+  #div-main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
     cursor: pointer;
+  }
+  #page-name{
     font-size: clamp(15px, 2.4vw, 2.5vw);
-    width: fit-content;
-    max-width: 100%;
+    max-height: 56px;
+    overflow: hidden;
+    user-select: none;
   }
   
   .navbar {
@@ -400,6 +440,7 @@ a {
       transition: all 0.3s;
       box-shadow: 0 0 10px rgba(255, 234, 0, 0.51);
       transform: translateY(-5px);
+      cursor: pointer;
     }
 
     .c-clear-but {
@@ -415,14 +456,24 @@ a {
       transition: all 0.3s;
       box-shadow: 0 0 10px rgba(255, 0, 0, 0.51);
       transform: translateY(-5px);
+      cursor: pointer;
     }
   }
 }
 
 /* CHECKOUT */
+.checkout{
+
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  height: 100vh; /* Ejemplo para ocupar toda la altura */
+  flex-direction: column;
+
 .checkout-products{
   margin:  1em auto;
   max-width: 800px;
+  width: 100%;
   padding: 2rem;
 
   .checkout-product{
@@ -513,6 +564,23 @@ a {
       cursor: pointer;
     }
   }
+}
+.checkout-pay-but{
+  width: 200px;
+      background-color: white;
+      border: 3px solid gold;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
+      padding: 1rem;
+      margin: 3rem auto;
+
+      &:hover{
+        background-color: rgb(255, 246, 198);
+        transition: all 0.3s;
+        box-shadow: 0 0 10px rgba(255, 234, 0, 0.51);
+        transform: translateY(-5px);
+        cursor: pointer;
+      }
+}
 }
 
 /* DASHBOARD */

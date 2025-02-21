@@ -19,6 +19,8 @@ function Dashboard({products, setProducts}) {
     const [imgHovered, setImgHovered] = useState(false);
     const [galleryActive, setGalleryActive] = useState(false);
 
+    const [defaultPriceIdBool, setDefaultPriceIdBool] = useState(true);
+
     const [urlRecieved, setUrlRecieved] = useState(false);
         useEffect(() => {
             if (urlRecieved) {
@@ -37,7 +39,15 @@ function Dashboard({products, setProducts}) {
         axios.post("http://localhost:4040/product/add", {product})
             .then(response => {
                 console.log("Product added successfully:", response.data);
-                setProducts([...products, newProduct]);
+                if (response.data.ok) {
+                    setProducts([product, ...products]);
+                    setNewProduct({
+                        name: null, price: null, image: null, stock: null, size: null,
+                        color: null, description: null, category: null, price_id: "price_1QuZX2EgDHE5Jv012x27Kqa1"
+                    });
+                    /*TODO */
+                    document.getElementById("images-string-add").value = "";
+                }
             })
             .catch(error => {
                 console.error("There was an error updating the product!", error);
@@ -67,7 +77,15 @@ function Dashboard({products, setProducts}) {
                 defaultValue={newProduct?.image?.join(", ")}
                 key={`${newProduct.name} images`} 
                 rows={newProduct.image ? `${newProduct.image.length + 1}` : "1"}
-                style={{ color: "magenta"}}>
+                style={{ color: "magenta"}}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                        e.preventDefault();
+                        const tempProduct = {...newProduct};
+                        tempProduct.image = e.target.value.split(", ");
+                        setNewProduct(tempProduct);
+                    }
+                }}>
             </textarea>
         </>
         );
@@ -81,87 +99,6 @@ function Dashboard({products, setProducts}) {
 <>
 <div className="headerShadow"></div>
 <div className="dashboard-view">
-
-
-
-
-
-    <div className="dash-container">
-            <button className="d-trash">
-                <img src={Trash} alt="Delete" />
-            </button>
-            <div className="dash-product">
-                <div className="d-product-container">
-                    <div className="d-image" >
-                        <img className="d-image-image" />
-                    </div>
-
-                    <div className="d-info">
-                        <div>
-                            <p className="iL">Name</p>                            
-                            <input className="d-name iL" />
-                            <div style={{whiteSpace: "nowrap"}} className="d-id iL"> id: 376537473475345</div>
-                        </div>
-                        <p>Description</p>
-                        <textarea rows="3"
-                            /*cols="50"*/
-                            className="d-description"
-                        />
-                    </div>
-                    <div className="d-properties">
-                        <div className="d-size">
-                            <p>Size → (a, b, c)</p>
-                            <input                     
-                            />
-                        </div>
-                        <div className="d-color">
-                            <p>Color → (x/ y/ z)</p>
-                            <textarea rows="2" /*cols="20"  */ 
-                            />
-                        </div>
-                    </div>
-                    <div className="d-about">
-                        <div className="d-price">
-                            <p>Price (xx.xx)</p>
-                            <span style={{display: "flex", alignItems: "center"}}>
-
-                            <input           
-                            style={{ maxWidth: "7em", textAlign: "right"}}
-                            /><span>€</span>
-                            </span>
-                        </div>
-                        <div className="d-stock">
-                            <p>Stock</p>
-                            <input                  
-                            style={{ maxWidth: "4em", textAlign: "center" }}
-                            />
-                        </div>
-                    </div>
-                    <div className="d-config">
-                        <p>Category</p>
-                        <input 
-                            style={{ maxWidth: "8em", marginRight: "1em" }}
-                            
-                        />
-                        <p>Price_ID</p>
-                        <input style={{ maxWidth: "12em", marginRight: "1em" }}
-                        />
-                    </div>
-                </div>
-                
-            </div>
-            <button className="d-upload" >
-                <img src={Publish} alt="Publish" />
-            </button>
-        </div>
-
-
-
-
-
-
-
-
     <h1>Dashboard</h1>
     <h2>Add product</h2>
     <div className="dash-container">
@@ -231,7 +168,7 @@ function Dashboard({products, setProducts}) {
                             <span style={{display: "flex", alignItems: "center"}}>
                             <input                     
                             type="number"
-                            style={{ maxWidth: "7em", textAlign: "right", color: "magenta" }}
+                            style={{ color: "magenta" }}
                             onChange={(e) => {
                                 const tempProduct = {...newProduct};
                                 tempProduct.price = e.target.value;
@@ -252,11 +189,25 @@ function Dashboard({products, setProducts}) {
                             }}
                             />
                         </div>
+                        <div className="d-order">
+                        <p className="iL">Order</p>
+                        <input                     
+                        className="iL"
+                        type="number"
+                        style={{ color: "magenta" }}
+                        onChange={(e) => {
+                            const tempProduct = {...newProduct};
+                                tempProduct.order = e.target.value;
+                                setNewProduct(tempProduct);
+                        }}
+                        />
+                    </div>
                     </div>
                     <div className="d-config">
                         <p>Category</p>
-                        <input 
-                            style={{ maxWidth: "8em", marginRight: "1em", color: "magenta" }}
+                        <input
+                            className="category_input"
+                            style={{ color: "magenta" }}
                             onChange={(e) => {
                                 const tempProduct = {...newProduct};
                                 tempProduct.category = e.target.value;
@@ -264,9 +215,12 @@ function Dashboard({products, setProducts}) {
                             }}
                         />
                         <p>Price_ID</p>
-                        <input 
-                            style={{ maxWidth: "12em", marginRight: "1em", color: "magenta" }}
+                        <input
+                            className="price_id_input"
+                            defaultValue={newProduct.price_id}
+                            style={{ color: defaultPriceIdBool ? "red" : "magenta" }}
                             onChange={(e) => {
+                                setDefaultPriceIdBool(false);
                                 const tempProduct = {...newProduct};
                                 tempProduct.price_id = e.target.value;
                                 setNewProduct(tempProduct);
