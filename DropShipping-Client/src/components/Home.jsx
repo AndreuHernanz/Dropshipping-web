@@ -19,7 +19,7 @@ function Home({ products }) {
             <div className="headerShadow"></div>
             <div className="background"/>
             <div className="products">
-                {products && products.map((productMap, i) => (
+                {products.map((productMap, i) => (
                     <Card product={productMap} key={i}/>
                 ))}
             </div>
