@@ -6,7 +6,7 @@ import Board from "./items/Boards";
 import "../styles/Dashboard.css";
 
 import Publish from "../assets/publish_.svg";
-import ADown from "../assets/arrow_down_.svg";
+import Asterisk from "../assets/add_.svg";
 import Trash from "../assets/trash_.svg";
 
 import CloudinaryUpload from "./items/CloudinaryUpload";
@@ -15,8 +15,8 @@ import CloudinaryUpload from "./items/CloudinaryUpload";
 function Dashboard({products, setProducts}) {
 
     const [newProduct, setNewProduct] = useState({
-        name: null, price: null, image: null, stock: null, size: null, 
-        color: null, description: null, category: null, price_id: "price_1QuZX2EgDHE5Jv012x27Kqa1"});
+        name: null, price: null, image: null, stock: null, size: [], 
+        color: [], description: '', category: null, price_id: "price_1QuZX2EgDHE5Jv012x27Kqa1"});
     const [imgHovered, setImgHovered] = useState(false);
     const [galleryActive, setGalleryActive] = useState(false);
 
@@ -39,12 +39,13 @@ function Dashboard({products, setProducts}) {
         let product = newProduct;
         axios.post(`${URL}/product/add`, {product})
             .then(response => {
-                console.log("Product added successfully:", response.data);
+                console.log("Product added successfully response:", response.data);
+                console.log("Product added :", product);
                 if (response.data.ok) {
                     setProducts([product, ...products]);
                     setNewProduct({
-                        name: null, price: null, image: null, stock: null, size: null,
-                        color: null, description: null, category: null, price_id: "price_1QuZX2EgDHE5Jv012x27Kqa1"
+                        name: null, price: null, image: null, stock: null, size: [],
+                        color: [], description: "", category: null, price_id: "price_1QuZX2EgDHE5Jv012x27Kqa1"
                     });
                     /*TODO */
                     document.getElementById("images-string-add").value = "";
@@ -109,12 +110,13 @@ function Dashboard({products, setProducts}) {
                     onMouseEnter={() => setImgHovered(true)}
                     onMouseLeave={() => setImgHovered(false)}>
                         {<img className="d-image-image" 
-        src={imgHovered || galleryActive || !newProduct.image ? ADown : newProduct.image[0]} alt=""/>}
+        src={imgHovered || galleryActive || !newProduct.image ? Asterisk : newProduct.image[0]} alt=""
+        style={{filter: "sepia(100%) saturate(100) hue-rotate(-70deg)"}}/>}
                     </div>
 
                     <div className="d-info">
                         <div>
-                            <p className="iL">Name</p>                            
+                            <p className="iL">Name *</p>                            
                             <input                     
                                 className="d-name iL" 
                                 type="text"
@@ -165,7 +167,7 @@ function Dashboard({products, setProducts}) {
                     </div>
                     <div className="d-about">
                         <div className="d-price">
-                            <p>Price (xx.xx)</p>
+                            <p>Price * (xx.xx)</p>
                             <span style={{display: "flex", alignItems: "center"}}>
                             <input                     
                             type="number"
@@ -179,7 +181,7 @@ function Dashboard({products, setProducts}) {
                             </span>
                         </div>
                         <div className="d-stock">
-                            <p>Stock</p>
+                            <p>Stock *</p>
                             <input                     
                             type="number"
                             style={{ maxWidth: "4em", textAlign: "center", color: "magenta" }}
@@ -205,7 +207,7 @@ function Dashboard({products, setProducts}) {
                     </div>
                     </div>
                     <div className="d-config">
-                        <p>Category</p>
+                        <p>Category *</p>
                         <input
                             className="category_input"
                             style={{ color: "magenta" }}

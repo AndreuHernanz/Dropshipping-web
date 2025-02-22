@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router";
+import "../styles/Cart.css";
 
 function Cart({cart, setCart}) {
     const [totalPrice, setTotalPrice] = useState(0);
@@ -71,7 +72,7 @@ function Cart({cart, setCart}) {
                 <div className="c-units">
                     <div onClick={() => removeProduct(product)} className="trash">X</div>
                     <p onClick={() => addUnits(product, false)}>-</p>
-                    <section>{product.units}</section>
+                    <section className="c-units-units">{product.units}</section>
                     <p onClick={() => addUnits(product, true)}>+</p>
                 </div>
                 <div className="c-price">

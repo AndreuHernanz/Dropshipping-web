@@ -203,7 +203,7 @@ return (
                     <div className="d-size">
                         <p>Size → (a, b, c)</p>
                         <input                     
-                        defaultValue={product?.size?.join(', ')} 
+                        defaultValue={ product.size.join(', ')} 
                         type="text"
                         style={{ color: sizeBool ? colorUploaded : colorNotUploaded, 
                             borderColor: sizeBool ? "" : colorNotUploaded }}
