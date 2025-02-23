@@ -48,7 +48,7 @@ class ProductsController {
 				category: product.category,
 				price_id: product.price_id
 			}*/
-			console.log(product)
+			//console.log(product)
 			const new_product = {
 				name: product.name,
 				price: parseFloat(product.price),
@@ -61,10 +61,10 @@ class ProductsController {
 				order: product.order,
 				price_id: product.price_id
 			}
-			console.log(new_product)
+			console.log("product added: ", new_product)
 			const existingProduct = await ProductsDB.findOne({name: new_product.name})
 			if (existingProduct) {
-				return res.send({ ok: true, message: `Product ${new_product.name} already exists`})
+				return res.send({ ok: false, message: `Product ${new_product.name} already exists`})
 			}
 			else {
 				const categories = await CategoriesDB.find({category: new_product.category})
@@ -129,6 +129,7 @@ class ProductsController {
 
 	async getProduct (req,res){
 		let name = req.params.product
+		console.log("Name: ", name)
 		try{
 			const product_to_find = await ProductsDB.findOne({name:name})
 			//product_to_find.item = name
