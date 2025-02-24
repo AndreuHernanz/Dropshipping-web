@@ -10,7 +10,7 @@ import Trash from "../../assets/trash_.svg";
 import ADown from "../../assets/arrow_down_.svg";
 
 
-function Boards({ products, setProducts, product, index }) {
+function Boards({ products, setProducts, product, index, loggedIn}) {
 
     let navigate = useNavigate()
 
@@ -52,41 +52,49 @@ function Boards({ products, setProducts, product, index }) {
     let colorNotUploaded = 'orangered';
 
     function updateProduct() {
-        axios.post(`${URL}/product/update`, {product})
-            .then(response => {
-                console.log("Product updated:", product);
-                console.log("Product updated successfully:", response.data);
-                setUploadedBool(true);
-                setImageBool(true);
-                setNameBool(true);
-                setDescriptionBool(true);
-                setSizeBool(true);
-                setColorBool(true);
-                setPriceBool(true);
-                setStockBool(true);
-                setCategoryBool(true);
-                setOrderBool(true);
-                setPriceIdBool(true);
-                sortProducts();
-            })
-            .catch(error => {
-                console.error("There was an error updating the product!", error);
-            });
+        if (loggedIn){
+            axios.post(`${URL}/product/update`, {product})
+                .then(response => {
+                    console.log("Product updated:", product);
+                    console.log("Product updated successfully:", response.data);
+                    setUploadedBool(true);
+                    setImageBool(true);
+                    setNameBool(true);
+                    setDescriptionBool(true);
+                    setSizeBool(true);
+                    setColorBool(true);
+                    setPriceBool(true);
+                    setStockBool(true);
+                    setCategoryBool(true);
+                    setOrderBool(true);
+                    setPriceIdBool(true);
+                    sortProducts();
+                })
+                .catch(error => {
+                    console.error("There was an error updating the product!", error);
+                });
+        }
     }
 
     function deleteProduct() {
         if (window.confirm(`Are you sure you want to delete this product: ${product.name.toUpperCase()}?`)) {
-            axios.post(`${URL}/product/delete`, { product })
-            .then(response => {
-                console.log("Product deleted successfully:", response.data);
-            })
-            .catch(error => {
-                console.error("There was an error deleting the product!", error);
-            });
-
-            let newProducts = [...products];
-            newProducts.splice(index, 1);
-            setProducts(newProducts);
+            if ( loggedIn ) {
+                axios.post(`${URL}/product/delete`, { product })
+                    .then(response => {
+                        console.log("Product deleted successfully:", response.data);
+                        let newProducts = [...products];
+                        newProducts.splice(index, 1);
+                        setProducts(newProducts);
+                    })
+                    .catch(error => {
+                        console.error("There was an error deleting the product!", error);
+                    });
+            }
+            else {
+                let newProducts = [...products];
+                newProducts.splice(index, 1);
+                setProducts(newProducts);
+            }
         }
         
     }
