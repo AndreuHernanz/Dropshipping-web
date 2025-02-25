@@ -165,8 +165,8 @@ function Dashboard({products, setProducts}) {
 <div className="headerShadow"></div>
 <div className="dashboard-disclaimer">
     <h3>Dashboard to manage shop products</h3>
-<p>Usualy the dashboard should be<b> hidden to public</b> but i left it open, as this web page is just for my portfolio</p>
-    <p>Feel free to modify or add products ass they will only happen locally, if you reload web page it will reset. <b>You need to admin login</b></p>
+<p>Usually the dashboard should be<b> hidden to public</b> but i left it open, as this web page is just for my portfolio</p>
+    <p>Feel free to modify or add products as they will only happen locally, if you reload web page it will reset. <b>You need to admin login</b></p>
 </div>
 <div className="dashboard-view">
     <div className="dash-top">

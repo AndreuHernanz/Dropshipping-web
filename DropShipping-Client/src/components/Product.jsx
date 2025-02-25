@@ -38,7 +38,13 @@ function Product({ products, addToCart }) {
         setCornerPosX(navCart.x);
         setCornerPosY(navCart.y);
         
-        
+        /*if (product?.size[0] !== '') {
+            if (product?.size.includes("m")) setSelectedSize("m");
+            else setSelectedSize(product?.size[0]);
+        }
+        if (product?.color[0] !== '') {
+            setSelectedColor(product?.color[0]);
+        }*/
     }, [])
 
     useEffect(() => {

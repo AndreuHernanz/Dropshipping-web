@@ -2,21 +2,80 @@ import React from "react";
 import { useState, useEffect } from "react";
 // We need to import the NavLink component from the router
 import { NavLink, useNavigate } from "react-router";
-import wideLogo from '../../assets/MShakeTurnAround.png'; // with import
-import iconLogo from '../../assets/iconTab2.png'; // with import
-import cartIcon from '../../assets/carritoicono.png'; // with import
+import wideLogo from '../../assets/MShakeTurnAround.png'; 
+import iconLogo from '../../assets/iconTab2.png'; 
+import cartIcon from '../../assets/carritoicono.png'; 
+
+import turn1 from '../../assets/Animation/Turn_1.png'; 
+import turn2 from '../../assets/Animation/Turn_2.png';
+import turn3 from '../../assets/Animation/Turn_3.png';
+import turn4 from '../../assets/Animation/Turn_4.png';
+import turn5 from '../../assets/Animation/Turn_5.png';
+import turn6 from '../../assets/Animation/Turn_6.png';
+import turn7 from '../../assets/Animation/Turn_7.png';
+import turn8 from '../../assets/Animation/Turn_8.png';
 
 
 const Navbar = () => {
     const [isWideScreen, setIsWideScreen] = useState(window.innerWidth > 768);
 
+    let turn = [turn1, turn2, turn3, turn4, turn5, turn6, turn7, turn8];
+    function animateLogo() {
+        console.log("animateLogo");
+        let i = 0;
+        setInterval(() => {
+            document.getElementById("logo").src = turn[i];
+            i++;
+            if (i === 8) i = 0;
+        }, 100);
+    }
+
+   
+
+
     useEffect(() => {
         const handleResize = () => {
           setIsWideScreen(window.innerWidth > 768);
         };
-    
+        const handleScroll = () => {
+            if ( Math.round(window.scrollY % 800 / 100) === 0 || Math.round(window.scrollY % 800 / 100) === 8) {
+                document.getElementById("logo").src = turn[0];
+            }
+            else if ( Math.round(window.scrollY % 800 / 100) === 1) {
+                document.getElementById("logo").src = turn[1];
+            }
+            else if ( Math.round(window.scrollY % 800 / 100) === 2) {
+                document.getElementById("logo").src = turn[2];
+            }
+            else if ( Math.round(window.scrollY % 800 / 100) === 3) {
+                document.getElementById("logo").src = turn[3];
+            }
+            else if ( Math.round(window.scrollY % 800 / 100) === 4) {
+                document.getElementById("logo").src = turn[4];
+            }
+            else if ( Math.round(window.scrollY % 800 / 100) === 5) { 
+                document.getElementById("logo").src = turn[5];
+            }
+            else if ( Math.round(window.scrollY % 800 / 100) === 6) {
+                document.getElementById("logo").src = turn[6];
+            }
+            else if ( Math.round(window.scrollY % 800 / 100) === 7) {
+                document.getElementById("logo").src = turn[7];
+            }
+            else {
+                document.getElementById("logo").src = turn[0];
+            }
+
+        };
+
+        
+        //animateLogo();
+        window.addEventListener("scroll", handleScroll);
         window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("resize", handleResize);
+          };
       }, []);
 
 
