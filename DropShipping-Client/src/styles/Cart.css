@@ -15,7 +15,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
 
     @media (max-width: 768px) {
-      grid-template-columns: auto 1fr 120px 100px;
+      grid-template-columns: auto 1fr 30px 90px;
     }
 
     img {
@@ -54,6 +54,9 @@
     .c-name {
       margin-top: 5px;
       text-align: left;
+      @media (max-width: 768px) {
+        font-size: medium;
+      }
     }
     .c-size {
     }
@@ -62,6 +65,10 @@
     .c-units {
       display: flex;
       justify-content: right;
+
+      @media (max-width: 768px) {
+        flex-direction: column-reverse;
+      }
 
       p {
         border: 1px solid grey;
@@ -88,6 +95,11 @@
 
         @media (max-width: 768px) {
           width: 30px;
+          border: 0;
+          border-top: 0;
+          border-bottom: 0;
+          border-left: 1px solid grey;
+          border-right: 1px solid grey;
         }
       }
     }
@@ -105,38 +117,39 @@
   }
   .trash {
     cursor: pointer;
-    min-height: 30px;
+    height: 0px;
     width: 30px;
     align-content: center;
     justify-content: center;
-    margin-right: 10px;
     opacity: 1;
     color: red;
-  }  
-  @media (min-width: 768px) {
-  .trash {
-    transition: all 0.6s ease-out;
-    min-height: 30px;
-    cursor: default;
-    width: 0;
-    margin: 0;
-    align-content: center;
-    justify-content: center;
-    color: black;
     opacity: 0;
-  }
-  .cart-product:hover .trash {
-    cursor: pointer;
-    min-height: 30px;
-    width: 30px;
-    align-content: center;
-    justify-content: center;
-    margin-right: 5px;
-    opacity: 1;
-  }
-  .trash:hover {
-    color: red;
-  }
+  }  
+  /*REVERSE UTILITY*/
+  @media (min-width: 768px) {
+    .trash {
+      transition: all 0.6s ease-out;
+      min-height: 30px;
+      cursor: default;
+      width: 0;
+      margin: 0;
+      align-content: center;
+      justify-content: center;
+      color: black;
+      opacity: 0;
+    }
+    .cart-product:hover .trash {
+      cursor: pointer;
+      min-height: 30px;
+      width: 30px;
+      align-content: center;
+      justify-content: center;
+      margin-right: 5px;
+      opacity: 1;
+    }
+    .trash:hover {
+      color: red;
+    }
   }
 
   .c-total {

@@ -6,14 +6,14 @@ import wideLogo from '../../assets/MShakeTurnAround.png';
 import iconLogo from '../../assets/iconTab2.png'; 
 import cartIcon from '../../assets/carritoicono.png'; 
 
-import turn1 from '../../assets/Animation/Turn_1.png'; 
-import turn2 from '../../assets/Animation/Turn_2.png';
-import turn3 from '../../assets/Animation/Turn_3.png';
-import turn4 from '../../assets/Animation/Turn_4.png';
-import turn5 from '../../assets/Animation/Turn_5.png';
-import turn6 from '../../assets/Animation/Turn_6.png';
-import turn7 from '../../assets/Animation/Turn_7.png';
-import turn8 from '../../assets/Animation/Turn_8.png';
+import turn1 from '../../assets/Animation-c/Turn_1.png'; 
+import turn2 from '../../assets/Animation-c/Turn_2.png';
+import turn3 from '../../assets/Animation-c/Turn_3.png';
+import turn4 from '../../assets/Animation-c/Turn_4.png';
+import turn5 from '../../assets/Animation-c/Turn_5.png';
+import turn6 from '../../assets/Animation-c/Turn_6.png';
+import turn7 from '../../assets/Animation-c/Turn_7.png';
+import turn8 from '../../assets/Animation-c/Turn_8.png';
 
 
 const Navbar = () => {
