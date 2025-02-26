@@ -17,7 +17,7 @@
 @font-face {
   font-family: 'Kanit';
   src: url('./assets/kanit-extrabold.ttf') format('truetype');
-  font-weight: bold;
+  font-weight: 800;
   font-style: normal;
 }
 @font-face {
@@ -49,6 +49,8 @@
 
 html {
   background-color: #e5e5e5;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 a {
@@ -157,27 +159,7 @@ p{
   height: 60px;
 }
 
-/* HOME */
-.background {
-  background-image: url('./assets/Mountains_c.png');
-  background-repeat: repeat-y; /* Repeats vertically */
-  background-position: center 50px;
-  background-attachment: fixed;
-  background-size:1520px ; /* Ensures the image fills the entire width */
-  height: 60vh;
-  width: 100vw; /* Ensure it spans full viewport width */
-}
-
-.products{
-  
-  padding: 2rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1rem;
-  box-shadow: 0 -10px 50px #e5e5e5;
-
-  anchor-name: --products;
-}
+/* CARDS POLAROID */
 .products-recommended{
   
   padding: 2rem;
@@ -193,6 +175,10 @@ p{
   transform: translateY(0px);
 
   cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   h2 {
     font-family: 'Rubik';

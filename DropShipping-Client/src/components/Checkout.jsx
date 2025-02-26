@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { URL } from "../../config";
 //import "../App.css";
 
 
@@ -30,21 +31,21 @@ export default function Checkout({cart, CheckoutForm}) {
             const productsCartCheckoutInfo = cart.map((product) => {
                 return { price: product.price_id, quantity: product.units };
                 });
-          // Sending POST request to create checkout session
-          const response = await axios.post("http://localhost:4040/create-checkout-session", 
-            // TODO: array of objects of priceid and quantity
+            // Sending POST request to create checkout session
+            const response = await axios.post(`${URL}/create-checkout-session`, 
+            // TODO: array of objects of priceid and quantity ${URL}
             { items: productsCartCheckoutInfo }
           );
     
-          // Retrieve the URL returned from the backend
-          const { url } = response.data;
+            // Retrieve the URL returned from the backend
+            const { url } = response.data;
     
-          // Open Stripe Checkout in a new window
-          window.open(url, "_blank", "width=500,height=700");
+            // Open Stripe Checkout in a new window
+            window.open(url, "_blank", "width=500,height=700");
         } catch (error) {
-          console.error("Error creating checkout session:", error);
-          // You could display a message to the user about the failure
-          alert("An error occurred while creating the checkout session. Please try again.");
+            console.error("Error creating checkout session:", error);
+            // You could display a message to the user about the failure
+            alert("An error occurred while creating the checkout session. Please try again.");
         }
       };
 

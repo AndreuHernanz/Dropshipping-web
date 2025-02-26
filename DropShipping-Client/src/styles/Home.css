@@ -1,0 +1,132 @@
+/* HOME */
+.background {
+    background-image: url('../assets/Mountains_c.png');
+    background-repeat: repeat-y; /* Repeats vertically */
+    background-position: center 50px;
+    background-attachment: fixed;
+    background-size:1535px ; /* Ensures the image fills the entire width */
+    height: 60vh;
+    width: 100vw; /* Ensure it spans full viewport width */
+  }
+  
+  .table{
+    anchor-name: --products;
+    box-shadow: 0 -10px 50px #e5e5e5;
+
+    .products-header{
+        display: flex;
+        justify-content: center;
+        gap: clamp(1rem, 7%,4rem);
+        align-items: center;
+        padding: 2rem 2rem 0rem;
+
+        .option{
+            font-size: large;
+            font-weight: normal;
+            cursor: pointer;
+        }
+        
+    }
+    .all-products{
+        
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1rem;
+    
+    }
+    .categories-products{
+
+        .category-name{
+            padding-top: 1rem;
+        }
+
+        .category-container{
+            margin: 1rem 2rem;
+            padding: 2rem;
+            background-color: #cccccc;
+            display: flex;            
+            gap: 1rem;
+            overflow-x: auto;
+
+            .product{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                width: 10rem;
+                background-color: #fff;
+                padding: 1rem;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
+                transform: translateY(0px);
+                scroll-snap-align: center;
+              
+                cursor: pointer;
+              
+                h2 {
+                  font-family: 'Rubik';
+                  font-size: 1rem;
+                }
+              
+                & img {
+                  width: auto;
+                  height: 20vh;
+                  border-radius: 0.5rem;
+                }
+              
+                & .color{
+                  background-color: yellow;
+                }
+              
+                &:hover {
+                  transform: translateY(-5px);
+                  transition: all 0.3s;
+                  border: 1px solid red;
+                  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+                }
+              }
+            
+        }
+    }
+    .filter-products{
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+
+        @media (max-width: 768px){
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+
+            .product{
+                font-size: small;
+            }
+        }
+    }
+  }
+
+
+  
+ 
+
+
+  /***********************************/
+
+  ::-webkit-scrollbar {
+    width: 3px;
+    height: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f100;
+    border-radius: 5px;
+    margin: 2px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: red;
+    border-radius: 5px;
+  }
+  
+  
+  

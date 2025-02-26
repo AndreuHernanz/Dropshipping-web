@@ -35,9 +35,6 @@ function Cards({product}) {
             <img src={hoveredImage} alt="" />
             <h2>{product.name.toUpperCase()}</h2>
             <p>{product.price}€</p>
-            {/* <div style={{ position:"absolute",  
-                left: "0", top: "90px", margin: "10px", padding: "0.3rem",  backgroundColor: "red", color : "white",
-                 }}>aa</div> */}
 
             <div className="sold-out"
                 style={{ position:"absolute", positionAnchor: `--product${product._id}`, 

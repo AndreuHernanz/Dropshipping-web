@@ -46,6 +46,7 @@ const CheckoutForm = () => {
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [everything, setEverything] = useState([]);
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
@@ -54,7 +55,8 @@ function App() {
       .then((res) => {
         res.data.message.sort((a, b) => a.order - b.order);
         setProducts(res.data.message);
-        console.log(res.data);
+        console.log("PRODUCTS",res.data.message);
+        getEverything();
       })
       .catch((err) => {
         console.log(err);
@@ -62,11 +64,25 @@ function App() {
 
     setCart(JSON.parse(localStorage.getItem("Cart")) || []);
   }, []);
+  
+  function getEverything() {
+    axios
+      .get(`${URL}/product/`)
+      .then((res) => {
+        setEverything(res.data.message);
+        console.log("Everything", res.data.message);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
-  const addToCart = async (productToAdd) => {
-    if (cart.find((prod) => prod.name === productToAdd.name)) {
+  const addToCart = async (prdTAdd) => {
+    if (cart.find((prod) => prod.name === prdTAdd.name) 
+      && cart.find((prod) => prod.size === prdTAdd.size)
+      && cart.find((prod) => prod.color === prdTAdd.color)) {
       let newCart = cart.map((prod) => {
-        if (prod.name === productToAdd.name) {
+        if (prod.name === prdTAdd.name && prod.size === prdTAdd.size && prod.color === prdTAdd.color) {
           prod.units += 1;
         }
         return prod;
@@ -75,8 +91,8 @@ function App() {
       localStorage.setItem("Cart", JSON.stringify(newCart));
       return;
     } else {
-      setCart([...cart, productToAdd]);
-      localStorage.setItem("Cart", JSON.stringify([...cart, productToAdd]));
+      setCart([...cart, prdTAdd]);
+      localStorage.setItem("Cart", JSON.stringify([...cart, prdTAdd]));
       //console.log(cart);
     }
   };
@@ -86,7 +102,7 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path="/" element={<Home products={products} />} />
+        <Route path="/" element={<Home products={products} everything={everything} />} />
         <Route path="/product/:productName" element={<Product products={products} addToCart={addToCart} />}/>
         <Route path="/cart" element={<Cart products={products} cart={cart} setCart={setCart} />} />
         <Route path="/dashboard" element={<Dashboard products={products} setProducts={setProducts} />} />

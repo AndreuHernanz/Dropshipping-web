@@ -30,7 +30,7 @@ connectToDB();
 app.use("/category", require("./routes/categoryRoutes.js"));
 app.use("/product", require("./routes/productsRoutes.js"));
 app.use("/user", require("./routes/usersRoutes.js"));
-//app.use("/create-checkout-session", require("./routes/checkoutRoutes.js"));
+app.use("/create-checkout-session", require("./routes/checkoutRoutes.js"));
 
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, '../DropShipping-Client/dist')));
@@ -40,7 +40,7 @@ app.get('/*', function (req, res) {
 });
 
 // Stripe Checkout Route
- app.post("/create-checkout-session", async (req, res) => {
+ /*app.post("/create-checkout-session", async (req, res) => {
    const { items } = req.body;
    console.log(items);
    try {
@@ -65,7 +65,7 @@ app.get('/*', function (req, res) {
    } catch (error) {
      res.status(500).json({ error: error.message });
    }
- });
+ });*/
 
 // Start Server
 app.listen(port, () => console.log(`:rocket: Listening on port: ${port} :rocket:`));
