@@ -38,32 +38,36 @@ const Navbar = () => {
           setIsWideScreen(window.innerWidth > 768);
         };
         const handleScroll = () => {
-            if ( Math.round(window.scrollY % 800 / 100) === 0 || Math.round(window.scrollY % 800 / 100) === 8) {
-                document.getElementById("logo").src = turn[0];
-            }
-            else if ( Math.round(window.scrollY % 800 / 100) === 1) {
-                document.getElementById("logo").src = turn[1];
-            }
-            else if ( Math.round(window.scrollY % 800 / 100) === 2) {
-                document.getElementById("logo").src = turn[2];
-            }
-            else if ( Math.round(window.scrollY % 800 / 100) === 3) {
-                document.getElementById("logo").src = turn[3];
-            }
-            else if ( Math.round(window.scrollY % 800 / 100) === 4) {
-                document.getElementById("logo").src = turn[4];
-            }
-            else if ( Math.round(window.scrollY % 800 / 100) === 5) { 
-                document.getElementById("logo").src = turn[5];
-            }
-            else if ( Math.round(window.scrollY % 800 / 100) === 6) {
-                document.getElementById("logo").src = turn[6];
-            }
-            else if ( Math.round(window.scrollY % 800 / 100) === 7) {
-                document.getElementById("logo").src = turn[7];
-            }
-            else {
-                document.getElementById("logo").src = turn[0];
+            if (document.getElementById("logo")){
+
+            
+                if ( Math.round(window.scrollY % 800 / 100) === 0 || Math.round(window.scrollY % 800 / 100) === 8) {
+                    document.getElementById("logo").src = turn[0];
+                }
+                else if ( Math.round(window.scrollY % 800 / 100) === 1) {
+                    document.getElementById("logo").src = turn[1];
+                }
+                else if ( Math.round(window.scrollY % 800 / 100) === 2) {
+                    document.getElementById("logo").src = turn[2];
+                }
+                else if ( Math.round(window.scrollY % 800 / 100) === 3) {
+                    document.getElementById("logo").src = turn[3];
+                }
+                else if ( Math.round(window.scrollY % 800 / 100) === 4) {
+                    document.getElementById("logo").src = turn[4];
+                }
+                else if ( Math.round(window.scrollY % 800 / 100) === 5) { 
+                    document.getElementById("logo").src = turn[5];
+                }
+                else if ( Math.round(window.scrollY % 800 / 100) === 6) {
+                    document.getElementById("logo").src = turn[6];
+                }
+                else if ( Math.round(window.scrollY % 800 / 100) === 7) {
+                    document.getElementById("logo").src = turn[7];
+                }
+                else {
+                    document.getElementById("logo").src = turn[0];
+                }
             }
 
         };

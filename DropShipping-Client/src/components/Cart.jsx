@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router";
 import "../styles/Cart.css";
+import ShakeCart from "../assets/mshakecart.png";
 
 function Cart({cart, setCart}) {
     const [totalPrice, setTotalPrice] = useState(0);
@@ -12,6 +13,7 @@ function Cart({cart, setCart}) {
             total += product.price * product.units;
         });
         setTotalPrice(total);
+        console.log("cart:", cart);
     }, [cart]);
 
     function getNItems(cart) {
@@ -58,7 +60,10 @@ function Cart({cart, setCart}) {
 <>
 <div className="headerShadow"></div>
 <div className="cart-view">
-    <h1>Cart</h1>
+    <div style={{display: "flex", alignItems: "center", justifyContent: "center", gap: "1em"}}>
+        <h1>Cart</h1>
+        <img src={ShakeCart} alt="" style={{width: "4em"}}/>
+    </div>
     <p>Here you can see the products you have added to your cart</p>
     <div className="cart-products">
         {cart.map((product) => (

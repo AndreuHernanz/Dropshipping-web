@@ -2,7 +2,6 @@ import React from "react";
 import {useEffect, useState } from 'react'
 import { useNavigate } from "react-router";
 import Card from "./items/Cards";
-import Mountains from "../assets/Mountains.png";
 import MrSeated from "../assets/MShakeSeated.png";
 
 

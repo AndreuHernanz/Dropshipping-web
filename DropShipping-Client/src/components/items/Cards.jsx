@@ -29,12 +29,22 @@ function Cards({product}) {
             key={product._id} 
             onClick={() => navigateToProduct(product.name)}
             ref={boxRef}
+            style={{ anchorName: `--product${product._id}` }}
             onMouseMove={handleMouseMove}
         >
-            {/* <img src={isHovered ? showImage() : product.image[0]} alt="" /> */}
             <img src={hoveredImage} alt="" />
             <h2>{product.name.toUpperCase()}</h2>
             <p>{product.price}€</p>
+            {/* <div style={{ position:"absolute",  
+                left: "0", top: "90px", margin: "10px", padding: "0.3rem",  backgroundColor: "red", color : "white",
+                 }}>aa</div> */}
+
+            <div className="sold-out"
+                style={{ position:"absolute", positionAnchor: `--product${product._id}`, 
+                right: "0", top: "0", margin: "1rem", padding: "0.3rem",  backgroundColor: "red", color : "white",
+                display: product.stock === 0 ? "block" : "none" }}>
+                <p>Sold Out</p>
+            </div>
         </div>
     );
 }

@@ -42,6 +42,9 @@
   -moz-osx-font-smoothing: grayscale;
 
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 html {
@@ -187,8 +190,13 @@ p{
   background-color: #fff;
   padding: 1rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
+  transform: translateY(0px);
 
   cursor: pointer;
+
+  h2 {
+    font-family: 'Rubik';
+  }
 
   & img {
     width: 100%;
@@ -242,6 +250,7 @@ p{
     font-weight:900;
     font-size: xx-large;
     text-align: left;
+    font-family: 'Rubik';
   }
   .p-price{
     text-align: left;
@@ -312,6 +321,8 @@ p{
     width: 100%;
     color: white;
     font-family: 'Kanit';
+
+    anchor-name: --add-but;
     &:hover {
       /*background-color: #e0e0e0;*/
       box-shadow: 0 0 30px rgb(185, 185, 185);
@@ -470,8 +481,31 @@ p{
 }
 }
 
-/* DASHBOARD */
-
+/* FOOTER */
+footer {
+  background-color: black;
+  color: white;
+  font-size: medium;
+  font-family: 'Kanit';
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.51);
+  .footer-links{
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    gap: 3rem;
+  }
+  .copyright{
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:large;
+  }
+  hr{
+    margin: 0 5rem;
+  }
+}
 
 /* ANIMATION */
 .img-animation{
@@ -507,7 +541,8 @@ p{
 
 @media (max-width: 768px) {
   .product-view{
-    display:block;
+    display:flex;
+    flex-direction: column-reverse;
     gap: 1rem;
     padding: 2rem;
     

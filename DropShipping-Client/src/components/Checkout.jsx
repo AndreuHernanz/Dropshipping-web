@@ -47,6 +47,10 @@ export default function Checkout({cart, CheckoutForm}) {
           alert("An error occurred while creating the checkout session. Please try again.");
         }
       };
+
+      useEffect(() => {
+                      window.scrollTo(0, 0);
+                  }, [])
     
       return (
         <>

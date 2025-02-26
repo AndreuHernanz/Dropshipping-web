@@ -3,6 +3,7 @@ import {useEffect, useState } from 'react'
 import { useParams } from "react-router";
 import { useNavigate } from "react-router";
 import Card from "./items/Cards";
+import MrSeated from "../assets/MShakeSeated.png";
 
 function Product({ products, addToCart }) {
     let params = useParams()
@@ -37,7 +38,11 @@ function Product({ products, addToCart }) {
         let navCart = document.getElementById("nav-cart").getBoundingClientRect();
         setCornerPosX(navCart.x);
         setCornerPosY(navCart.y);
-        
+
+        setSelectedSize(null);
+        setSelectedColor(null);
+        console.log("useEffect");
+
         /*if (product?.size[0] !== '') {
             if (product?.size.includes("m")) setSelectedSize("m");
             else setSelectedSize(product?.size[0]);
@@ -48,7 +53,7 @@ function Product({ products, addToCart }) {
     }, [])
 
     useEffect(() => {
-        setTimeout(() => setInit(), 100);
+        /*setTimeout(() => setInit(), 100);*/
         
         if (product?.size[0] !== '') {
             if (product?.size.includes("m")) setSelectedSize("m");
@@ -57,7 +62,7 @@ function Product({ products, addToCart }) {
         if (product?.color[0] !== '') {
             setSelectedColor(product?.color[0]);
         }
-    },[products])
+    },[products, productName])
 
     
 
@@ -141,6 +146,10 @@ function Product({ products, addToCart }) {
                     </button>
                     {addedToCartMssg && <div className="cart-message">Item added to cart!</div>}
                     {soldOut && <div className="cart-message-red">The product {product.name} is already sold out</div>}
+
+                    <img src={MrSeated} alt="" 
+                                    style={{position:"absolute", positionAnchor: `--add-but`, 
+                                        right: "anchor(right)", bottom: "calc(anchor(top) - 14px)", width: "40px", marginRight: "10px" }}/>
                 </div>
             </div>
 
