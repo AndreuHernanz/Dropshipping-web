@@ -480,6 +480,10 @@ footer {
     justify-content: center;
     align-items: top;
     gap: 3rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
   }
   .copyright{
     padding: 1rem;

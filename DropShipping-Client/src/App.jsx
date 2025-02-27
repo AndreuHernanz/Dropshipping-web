@@ -8,7 +8,7 @@ import Cart from "./components/Cart.jsx";
 import Dashboard from "./components/Dashboard.jsx";
 import Checkout from "./components/Checkout.jsx";
 import Navbar from "./components/items/Navbar.jsx";
-import Footer from "./components/Footer.jsx";
+import Footer from "./components/items/Footer.jsx";
 import "./App.css";
 
 import { useCallback } from "react";

@@ -45,8 +45,9 @@
             margin: 1rem 2rem;
             padding: 2rem;
             background-color: #cccccc;
-            display: flex;            
+            display: flex;     
             gap: 1rem;
+            max-width: 100%;
             overflow-x: auto;
 
             .product{
