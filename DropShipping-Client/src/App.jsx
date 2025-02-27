@@ -110,7 +110,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard products={products} setProducts={setProducts} />} />
         <Route path="/checkout" element={<Checkout cart={cart} CheckoutForm={CheckoutForm} />} />
       </Routes>
-
+      
       <Footer />
     </Router>
   );

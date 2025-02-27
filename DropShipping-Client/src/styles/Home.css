@@ -4,7 +4,8 @@
     background-repeat: repeat-y; /* Repeats vertically */
     background-position: center 50px;
     background-attachment: fixed;
-    background-size:1535px ; /* Ensures the image fills the entire width */
+    background-size:1535px ; /* Ensures the image fills the entire width */ /*1535px*/
+    background-repeat: no-repeat;
     height: 60vh;
     width: 100vw; /* Ensure it spans full viewport width */
   }
@@ -42,10 +43,10 @@
         }
 
         .category-container{
-            margin: 1rem 2rem;
-            padding: 2rem;
+            margin: 1rem 0;
+            padding: 2rem; /*2rem;*/
             background-color: #cccccc;
-            display: flex;     
+            display: flex;    
             gap: 1rem;
             max-width: 100%;
             overflow-x: auto;
@@ -70,7 +71,7 @@
               
                 & img {
                   width: auto;
-                  height: 20vh;
+                  height: auto;
                   border-radius: 0.5rem;
                 }
               

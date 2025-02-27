@@ -1,5 +1,5 @@
 import React from "react";
-import {useEffect, useState } from 'react'
+import {useEffect, useState, useRef } from 'react'
 import { useNavigate } from "react-router";
 import Card from "./items/Cards";
 import MrSeated from "../assets/MShakeSeated.png";
@@ -14,9 +14,25 @@ function Home({ products, everything }) {
 
     const[prdsPrice, setPrdsPrice] = useState(null);
 
+
+    const containerRefs  = useRef([]);
+
+
     useEffect(() => {
         window.scrollTo(0, 0);
+        
+        
     }, [])
+
+    useEffect(() => {
+        containerRefs.current.forEach((container) => {
+            if (container) {
+                const scrollX = (container.scrollWidth - container.clientWidth) / 2;
+                container.scrollLeft = scrollX;
+            }
+        });
+    }, [option])
+
     useEffect(() => {
         let tempPrice = [...products];
         tempPrice.sort((a, b) => a.price - b.price);
@@ -44,15 +60,15 @@ function Home({ products, everything }) {
                 </div>}
                 {option === "CATEGORIES" && <div className="categories-products">
                     {everything.map((everyMap, i) => (
-                        <>
-                        <h2 className="category-name">{everyMap.category.toUpperCase()}</h2>
-                        <div className="category-container">
+                        <div className="" key={i} style={{width: "fit-content", maxWidth: "100vw" , margin: "0 auto"}}>
+                            <h2 className="category-name">{everyMap.category.toUpperCase()}</h2>
+                            <div ref={(el) => (containerRefs.current[i] = el)} className={`category-container ${i}`}>
 
-                            {everyMap.products.map((productMap, j) => (
-                                <Card product={productMap} key={j}/>
-                            ))}
+                                {everyMap.products.map((productMap, j) => (
+                                    <Card product={productMap} key={j}/>
+                                ))}
+                            </div>
                         </div>
-                        </>
                     ))}
                 </div>}
                 {option === "FILTER" && <div className="filter-products">
